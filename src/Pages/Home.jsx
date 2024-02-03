@@ -22,7 +22,6 @@ const Home = () => {
   const [principalLimited,setPrincipalLimited] = useState([])
   const [industryLimited,setIndustryLimited] = useState([])
   
-
   useEffect(()=>{
     CategoryByLimit?setCategoryLimited(CategoryByLimit.data):console.log("Fetching Categoires")
     LimitedPost?setLimitedPost(LimitedPost.data):console.log("fetching limited post")
