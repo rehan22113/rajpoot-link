@@ -10,8 +10,8 @@ import { useGetAllPostQuery, useGetFilteredPostMutation } from '../Redux/Api/Pos
 import { useSelector,useDispatch } from 'react-redux'
 import { useGetIndustryQuery } from '../Redux/Api/IndustryApi'
 import { useGetPrincipalQuery } from '../Redux/Api/PrincipalApi'
-import BoxProduct from '../Components/shop-product/box-product'
-import ListProduct from '../Components/shop-product/list-product'
+import BoxProduct from '../Components/ShopProduct/box-product'
+import ListProduct from '../Components/ShopProduct/list-product'
 import { updatefilter } from '../Redux/slice/productSlice'
 
 const sortOptions = [
@@ -146,7 +146,6 @@ export default function Shop() {
 
             <div className="fixed inset-0 flex z-40">
               <Transition.Child
-                
                 enter="transition ease-in-out duration-300 transform"
                 enterFrom="translate-x-10"
                 enterTo="translate-x-0"
@@ -170,19 +169,7 @@ export default function Shop() {
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
                     <h3 className="sr-only">Categories</h3>
-                    {/* <ul role="list" className="font-medium text-skin-primary px-2 py-3">
-                      {subCategories.map((category) => (
-                        <li key={category.name}>
-                          <a href={category.href} className="block px-2 py-3">
-                            {category.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul> */}
-
-                    
                       <Disclosure as="div" className="border-t border-gray-200 px-4 py-6">
-                        {({ open }) => (
                           <>
                             <h3 className="-mx-2 -my-3 flow-root">
                               <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
@@ -220,7 +207,7 @@ export default function Shop() {
                               </div>
                             </Disclosure.Panel>
                           </>
-                        )}
+                      
                       </Disclosure>
                     
                   </form>
