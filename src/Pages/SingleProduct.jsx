@@ -12,6 +12,7 @@ const SingleProduct = () => {
   useEffect(()=>{
     data?setSinglePost(data.data):console.log("fetching single post")
   },[isFetching])
+  
   return (
     <>
     <Navbar/>
