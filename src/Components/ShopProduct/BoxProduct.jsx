@@ -6,7 +6,6 @@ const BoxProduct = ({item}) => {
     <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden cursor-pointer">
                 <Link to={`/product/${item._id}`}>
             <div className="flex items-end justify-end h-52 w-full bg-cover" style={{backgroundImage: `url('${item.fImage}')`}}>
-            
             </div>
                 </Link>
             <div className="px-2 py-3">
@@ -15,7 +14,7 @@ const BoxProduct = ({item}) => {
   <Link to={`/product/${item._id}`}>
   <h2 className="text-lg hover:underline text-gray-900 font-medium title-font mb-4">{item.title}</h2>
   </Link>
- 
+
 </div>
 
             </div>
