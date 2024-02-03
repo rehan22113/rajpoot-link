@@ -2,7 +2,7 @@ import React, { useState,useEffect,Fragment } from 'react'
 import Navbar from '../Components/Layout/Navbar'
 import Footer from '../Components/Layout/Footer'
 import { useGetCategoryQuery } from '../Redux/Api/CategoryApi'
-import BoxProduct from '../Components/shop-product/box-product'
+import BoxProduct from '../Components/ShopProduct/BoxProduct'
 import { useGetPostByCategoryQuery } from '../Redux/Api/PostApi'
 import { useLocation, useParams, useSearchParams } from 'react-router-dom'
 
