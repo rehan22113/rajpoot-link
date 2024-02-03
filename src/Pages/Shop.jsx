@@ -10,8 +10,8 @@ import { useGetAllPostQuery, useGetFilteredPostMutation } from '../Redux/Api/Pos
 import { useSelector,useDispatch } from 'react-redux'
 import { useGetIndustryQuery } from '../Redux/Api/IndustryApi'
 import { useGetPrincipalQuery } from '../Redux/Api/PrincipalApi'
-import BoxProduct from '../Components/ShopProduct/box-product'
-import ListProduct from '../Components/ShopProduct/list-product'
+import BoxProduct from '../Components/ShopProduct/BoxProduct'
+import ListProduct from '../Components/ShopProduct/ListProduct'
 import { updatefilter } from '../Redux/slice/productSlice'
 
 const sortOptions = [
