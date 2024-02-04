@@ -1,10 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import useAuth from '../../Hooks/useAuth'
 
 const TopNav = () => {
+  const {LogoutUser} = useAuth()
   const Navigate = useNavigate()
   const HandleLogout=()=>{
-    Navigate("/login")
+    LogoutUser()
   }
 
   return (
