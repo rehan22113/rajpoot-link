@@ -11,22 +11,25 @@ import { useGetPostByLimitQuery } from '../Redux/Api/PostApi'
 import { Link } from 'react-router-dom'
 import { useGetPrincipalByLimitQuery } from '../Redux/Api/PrincipalApi'
 import { useGetIndustryByLimitQuery } from '../Redux/Api/IndustryApi'
+import { useGetClientByLimitQuery } from '../Redux/Api/ClientApi'
 const Home = () => {
   const {data:CategoryByLimit,isFetching} = useGetCategoryByLimitQuery(8)
   const {data:PrincipalByLimit,isFetching:fetchPrincipal} = useGetPrincipalByLimitQuery(6)
   const {data:IndustryByLimit,isFetching:fetchIndustry} = useGetIndustryByLimitQuery(6)
+  const {data:ClientByLimit,isFetching:fetchClient} = useGetClientByLimitQuery(8)
   // const {data,error,isLoading} = useGetTestQuery()
   const {data:LimitedPost,isFetching:fetchPost} = useGetPostByLimitQuery(8)
   const [categoryLimited,setCategoryLimited] = useState([])
   const [limitedPost,setLimitedPost] = useState([])
   const [principalLimited,setPrincipalLimited] = useState([])
-  const [industryLimited,setIndustryLimited] = useState([])
+  const [clientLimited,setClientLimited] = useState([])
   
   useEffect(()=>{
     CategoryByLimit?setCategoryLimited(CategoryByLimit.data):console.log("Fetching Categoires")
     LimitedPost?setLimitedPost(LimitedPost.data):console.log("fetching limited post")
     PrincipalByLimit?setPrincipalLimited(PrincipalByLimit.data):console.log("Fetching Principal")
-    IndustryByLimit?setIndustryLimited(IndustryByLimit.data):console.log("Fetching Industry")
+    // IndustryByLimit?setIndustryLimited(IndustryByLimit.data):console.log("Fetching Industry")
+    ClientByLimit?setClientLimited(ClientByLimit.data):console.log("Fetching Client")
   },[isFetching,fetchPost,fetchPrincipal,fetchIndustry])
   return (
     <div>
@@ -90,7 +93,7 @@ const Home = () => {
    </div>
    <div className="max-w-screen-xl mx-auto mt-10">
      <div className="grid grid-cols-2 gap-6 md:grid-cols-6">
-     {industryLimited.map((item)=>(
+     {clientLimited.map((item)=>(
 
        <div key={item._id} className="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1">
        <img src={`${item.image}`} className=' w-20 h-20 object-cover' />
