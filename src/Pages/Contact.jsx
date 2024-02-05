@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Navbar from '../Components/Layout/Navbar'
 import Footer from '../Components/Layout/Footer'
+import { usePostContactMutation } from '../Redux/Api/ContactApi'
 
 const Contact = () => {
+  const [SubmitContact,result] = usePostContactMutation()
   const [data,setData] = useState({
     name:"",
     email:"",
@@ -13,13 +15,10 @@ const Contact = () => {
   }
 
   const HandleSubmit=async()=>{
-    const res = await fetch("/api/v1",{
-      method:'POST',
-      body:JSON.stringify(data)
-    })
-    const data = await res.json()
-    if(res.status == 201){
-      alert("Thanks for contacting us")
+    const res =await SubmitContact(data)
+    // console.log(res)
+    if(res.data.msg == 'Contact Form Submitted'){
+      alert("Thanks for contacting us! We Will Contact You Soon")
     }else{
       alert("Something went wrong! Try Again")
     }

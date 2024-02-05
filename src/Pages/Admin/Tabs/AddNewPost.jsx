@@ -35,12 +35,12 @@ const AddNewPost = () => {
     category?setCategoryFetch(category.data):setCategoryFetch([])
   },[category])
 
-  const SubmitModal=()=>{
+  const SubmitModal=async()=>{
     try{
 
       let ind = new FormData()
       console.log("there we are ",newPost)
-      if(newPost.title && newPost.isFeatured && newPost.image && newPost.category){
+      if(newPost.title && newPost.image && newPost.category){
         ind.append("title",newPost.title)
         ind.append("category",JSON.stringify(newPost.category))
         ind.append("principal",newPost.principal)
@@ -54,11 +54,13 @@ const AddNewPost = () => {
         ind.append("fb",newPost.fb)
         ind.append("tw",newPost.tw)
         ind.append("insta",newPost.insta)
-        SubmitNewPost(ind)
+        const res =await SubmitNewPost(ind)
         console.log("Data send",result)
-        setTimeout(()=>{
+        if(res.data.msg=="Post Inserted"){
           Navigate("/myadmin-panel/allpost")
-        },2000)
+        }else{
+          alert("Something went Wrong! Try Again please")
+        }
     // setIsOpen(false)
       }else{
         alert("Some Fields are empty")
