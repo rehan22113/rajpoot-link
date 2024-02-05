@@ -133,12 +133,11 @@ const AllCategory = () => {
   const deleteCategory=(id)=>{
     deleteCat(id)
     refetch()
-
   }
 
   useEffect(()=>{
     data?setCategory(data.data):console.log("Fetching Categories")
-  },[isFetching])
+  },[isFetching,isLoading])
   
   function closeModal() {
     setIsOpen(false)
@@ -147,7 +146,7 @@ const AllCategory = () => {
     setIsOpen(true)
   }
 
-  const SubmitModal=()=>{
+  const SubmitModal=async()=>{
     try{
 
       let ind = new FormData()
@@ -165,8 +164,11 @@ const AllCategory = () => {
           image:"",
           parent:""
         })
+        // const {data} = await refetch()
+        //  console.log("data",data)
+        setAddNewCategory({name:"",fImage:"",featured:false,parent:null})
+         setCategory(data.data)
     setIsOpen(false)
-    refetch()
       }else{
         alert("Some Fields are empty")
       }

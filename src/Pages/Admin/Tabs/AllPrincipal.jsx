@@ -25,14 +25,14 @@ const AllPrincipal = () => {
 
   useEffect(()=>{
     data?setPrincipal(data.data):console.log("fetching Principal")
-  },[isFetching])
+  },[isFetching,isLoading])
   function closeModal() {
     setIsOpen(false)
   }
   function openModal() {
     setIsOpen(true)
   }
-  const SubmitModal=()=>{
+  const SubmitModal=async()=>{
     try{
 
       let ind = new FormData()
@@ -41,9 +41,12 @@ const AllPrincipal = () => {
         ind.append("fImage",addPrincipal.image)
         ind.append("featured",addPrincipal.featured)
         AddNewPost(ind)
-        console.log("Data send",result)
-    setIsOpen(false)
-    refetch()
+        // console.log("Data send",result)
+      //  const {data} = await refetch()
+      // //  console.log("data",data)
+      setPrincipal(data.data)
+      setAddPrincipal({name:"",fImage:"",featured:false})
+      setIsOpen(false)
       }else{
         alert("Some Fields are empty")
       }

@@ -2,28 +2,28 @@ import React, { useState,Fragment, useEffect } from 'react'
 import TopNav from '../../../Components/Admin/TopNav'
 import { Link, useNavigate } from 'react-router-dom'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { useDeleteIndustryMutation, useGetIndustryQuery, usePostIndustryMutation } from '../../../Redux/Api/IndustryApi'
+import { useDeleteClientMutation, useGetClientQuery, usePostClientMutation } from '../../../Redux/Api/ClientApi'
 
-const AllIndustry = () => {
+const AllClient = () => {
   const Navigate = useNavigate()
-  const {data,isLoading,isFetching,refetch} = useGetIndustryQuery()
-  const [AddNewPost,result] = usePostIndustryMutation()
-  const [deleteCat] = useDeleteIndustryMutation()
+  const {data,isLoading,isFetching,refetch} = useGetClientQuery()
+  const [AddNewPost,result] = usePostClientMutation()
+  const [deleteCat] = useDeleteClientMutation()
 
   const [isOpen, setIsOpen] = useState(false)
-  const [addIndustry,setAddIndustry] = useState({
+  const [addClient,setAddClient] = useState({
     name:"",
     featured:false,
     image:""
   })
-  const [industry,setIndustry] = useState([])
-  const deleteIndustry=(id)=>{
+  const [client,setClient] = useState([])
+  const deleteClient=(id)=>{
     deleteCat(id)
     refetch()
 
   }
   useEffect(()=>{
-    data?setIndustry(data.data):console.log("fetching",isFetching)
+    data?setClient(data.data):console.log("fetching",isFetching)
   },[isFetching,isLoading])
 
   function closeModal() {
@@ -35,19 +35,16 @@ const AllIndustry = () => {
 
   const SubmitModal=async()=>{
     try{
-
       let ind = new FormData()
-      if(addIndustry.name && addIndustry.image){
-        ind.append("name",addIndustry.name)
-        ind.append("fImage",addIndustry.image)
-        ind.append("featured",addIndustry.featured)
+      if(addClient.name && addClient.image){
+        ind.append("name",addClient.name)
+        ind.append("fImage",addClient.image)
+        ind.append("featured",addClient.featured)
         AddNewPost(ind)
-        console.log("Data send",result)
-        const {data} = await refetch()
-        //  console.log("data",data)
-         setIndustry(data.data)
-        setAddIndustry({name:"",fImage:"",featured:false})
-    setIsOpen(false)
+        // console.log("Data send",result)
+        // await refetch()
+        setAddClient({name:"",fImage:"",featured:false})
+        setIsOpen(false)
       }else{
         alert("Some Fields are empty")
       }
@@ -62,7 +59,7 @@ const AllIndustry = () => {
   <div className="sm:flex sm:items-center sm:justify-between">
     <div>
       <div className="flex items-center gap-x-3">
-        <h2 className="text-xl text-gray-800 font-bold">All Industry</h2>
+        <h2 className="text-xl text-gray-800 font-bold">All Client</h2>
         {/* <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">240 vendors</span> */}
       </div>
       {/* <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">These companies have purchased in the last 12 months.</p> */}
@@ -73,7 +70,7 @@ const AllIndustry = () => {
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <span>Add New Industry</span>
+        <span>Add New Client</span>
       </button>
     </div>
   </div>
@@ -118,7 +115,7 @@ const AllIndustry = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-              {industry?.map((item)=>(
+              {client?.map((item)=>(
 
               <tr key={item._id}> 
                 <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
@@ -174,7 +171,7 @@ leaveTo="transform opacity-0 scale-95"
 {({ active }) => (
   <Link
   target='_blank'
-  to={`/industry?id=${item._id}`}
+  to={`/client?id=${item._id}`}
     className={`${
       active ? 'bg-violet-500 text-white' : 'text-gray-900'
     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -188,7 +185,7 @@ leaveTo="transform opacity-0 scale-95"
 <div className="px-1 py-1">
 <Menu.Item>
   <button
-    onClick={()=>deleteIndustry(item._id)}
+    onClick={()=>deleteClient(item._id)}
     className={` group flex bg-red-500 w-full items-center rounded-md px-2 py-2 text-sm`}
   >
     
@@ -266,24 +263,24 @@ leaveTo="transform opacity-0 scale-95"
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Add New Industry
+                    Add New Client
                   </Dialog.Title>
                   
 <form>
   <div className="my-6">
-    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name of Industry</label>
-    <input type="text" onChange={(e)=>{setAddIndustry({...addIndustry,name:e.target.value})}} id="name" value={addIndustry.name} className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="eg. steel industry" required />
+    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name of Client</label>
+    <input type="text" onChange={(e)=>{setAddClient({...addClient,name:e.target.value})}} id="name" value={addClient.name} className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="eg. steel Client" required />
   </div>
   <div className="my-6">
     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Featured</label>
-    <select type="text" onChange={(e)=>{setAddIndustry({...addIndustry,featured:e.target.value})}} id="name" defaultValue={addIndustry.featured} className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Women Cloths etc." required >
+    <select type="text" onChange={(e)=>{setAddClient({...addClient,featured:e.target.value})}} id="name" defaultValue={addClient.featured} className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Women Cloths etc." required >
       <option value={true}>Yes</option>
       <option value={false}>No</option>
     </select>
   </div>
   <div className="mb-6">
     <label htmlFor="file" className="block mb-2 text-sm font-medium text-gray-900">Thumbnail Image</label>
-    <input onChange={(e)=>{setAddIndustry({...addIndustry,image:e.target.files[0]})}} type="file" id="file" className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+    <input onChange={(e)=>{setAddClient({...addClient,image:e.target.files[0]})}} type="file" id="file" className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
   </div>
 
                   <div className="mt-4">
@@ -306,4 +303,4 @@ leaveTo="transform opacity-0 scale-95"
   )
 }
 
-export default AllIndustry
+export default AllClient
