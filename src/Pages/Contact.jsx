@@ -56,9 +56,11 @@ const Contact = () => {
           <button className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Contact us</button>
         </div>
         <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-          <a className="text-indigo-500">example@email.com</a>
-          <p className="leading-normal my-5">49 Smith St.
-            <br />Saint Cloud, MN 56301
+          Email: <a href='mailto://info@rajpootlinks.com ' className="text-indigo-500"> info@rajpootlinks.com </a>
+          Telephone:<a href='tell://+9251512482021' className="text-indigo-500"> (+92) 51 512 4820 - 21 </a>
+          <p className="leading-normal my-5">Rajpoot Links (SMC.) Private Limited 
+First Floor 279/2,
+            <br /> Main Peshawar Road, Opps. Anwar Hospital, Rawalpindi Cantt –Pakistan.
           </p>
           <span className="inline-flex">
             <a className="text-gray-500">

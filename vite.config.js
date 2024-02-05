@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://rajpoot-backend.verce.app",
+        target: "https://rajpoot-backend.vercel.app",
         changeOrigin: true,
         secure: false,
       },
