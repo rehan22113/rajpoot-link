@@ -1,6 +1,6 @@
 {
     "rewrites": [
-        { "source": "/api/:path(.*)", "destination": "https://rajpoot-backend.verce.app/api/:path" },
+        { "source": "/api/:path(.*)", "destination": "https://rajpoot-backend.vercel.app/api/:path" },
         { "source": "/(.*)", "destination": "/index.html" }
     ]
 }
