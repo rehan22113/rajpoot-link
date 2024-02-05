@@ -32,7 +32,7 @@ const AllPost = () => {
         <h2 className="text-xl text-gray-800 font-bold">All Post</h2>
        
       </div>
-      {/* <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">These companies have purchased in the last 12 months.</p> */}
+      {/* <p className="mt-1 text-sm text-gray-300">These companies have purchased in the last 12 months.</p> */}
     </div>
     <div className="flex items-center mt-4 gap-x-3">
      
@@ -67,12 +67,12 @@ const AllPost = () => {
   </div>
   <div className="flex flex-col mt-6">
     <div className="overflow-x-auto sm:-mx-6 lg:-mx-4">
-      <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-        <div className=" border border-gray-200 dark:border-gray-700 md:rounded-lg">
-          <table className="min-w-full h-auto divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-800 sticky top-0">
+      <div className="inline-block w-full py-2 align-middle md:px-6 lg:px-8">
+        <div className=" border border-gray-700 md:rounded-lg">
+          <table className="min-w-full h-auto divide-y divide-gray-700">
+            <thead className="bg-gray-800 sticky top-0">
               <tr>
-                <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-400">
                   <button className="flex items-center gap-x-3 focus:outline-none">
                     <span>Title</span>
                     <svg className="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,28 +82,29 @@ const AllPost = () => {
                     </svg>
                   </button>
                 </th>
-                <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-400">
                   Status
                 </th>
-                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-400">
                   Category
                 </th>
-                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Principal</th>
-                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Industry</th>
+                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-400">Principal</th>
+                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-400">Industry</th>
                 <th scope="col" className="relative py-3.5 px-4">
                   <span className="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+            <tbody className=" divide-y divide-gray-700 bg-gray-900">
            
             {post.map((item)=>(
             <tr key={item?._id}>
-                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                  <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">{item.title}</h2>
-                    {/* <p className="text-sm font-normal text-gray-600 dark:text-gray-400">catalogapp.io</p> */}
-                  </div>
+                <td className="px-4 py-4 text-sm font-medium ">
+                <div className="px-3 py-1 text-sm font-normal rounded-full text-[#a3a3a3]">
+
+                  <h2 className="title-font font-medium text-gray-200 mb-3 truncate whitespace-break-spaces">{item.title}</h2>                   
+                </div>
+                 
                 </td>
                 <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
                   <div className={`inline px-3 py-1 text-sm font-normal rounded-full ${item.status?"text-emerald-500":"text-[#a3a3a3]"}  gap-x-2 bg-emerald-100/60 dark:bg-gray-800`}>
@@ -115,7 +116,7 @@ const AllPost = () => {
                   {item.category?item.category.map((cc,cIndex)=>(
                     <h4 className="text-gray-700 dark:text-gray-200">{cIndex} {">"} {cc.name}</h4>
                      )):"unCategorized"}
-                    {/* <p className="text-gray-500 dark:text-gray-400">Brings all your news into one place</p> */}
+                    {/* <p className="text-gray-400">Brings all your news into one place</p> */}
                   </div>
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
@@ -202,7 +203,7 @@ const AllPost = () => {
     </div>
   </div>
   <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
-    <div className="text-sm text-gray-500 dark:text-gray-400">
+    <div className="text-sm text-gray-400">
       Page <span className="font-medium text-gray-700">1 of 10</span> 
     </div>
     <div className="flex items-center mt-4 gap-x-4 sm:mt-0">

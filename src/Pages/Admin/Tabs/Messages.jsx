@@ -1,11 +1,14 @@
-import React, { useState,Fragment } from 'react'
+import React, { useState,Fragment, useEffect } from 'react'
 import TopNav from '../../../Components/Admin/TopNav'
 import { useNavigate } from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
+import { useGetContactQuery } from '../../../Redux/Api/ContactApi'
 
 const Messages = () => {
   const Navigate = useNavigate()
+  const {data,isLoading,isFetching,refetch} = useGetContactQuery()
   const [isOpen, setIsOpen] = useState(false)
+
 
   function closeModal() {
     setIsOpen(false)
@@ -14,6 +17,10 @@ const Messages = () => {
     setIsOpen(true)
   }
 
+  useEffect(()=>{
+    data?setIndustry(data.data):console.log("fetching",isFetching)
+  },[isFetching,isLoading])
+  
   return (
     <>
     <TopNav/>
