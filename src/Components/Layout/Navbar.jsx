@@ -13,13 +13,13 @@ const Navbar = () => {
   const [filterCategory,setFilterCategory] = useState({data:[]})
 
   const FilterParentCategory=()=>{
-    const filteredCategories = category.data.filter((item) =>item.parent ===null);
+    const filteredCategories = category?.data?.filter((item) =>item.parent ===null);
     setFilterCategory({data:filteredCategories})
   }
 
   useEffect(()=>{
     FilterParentCategory()
-  },[])
+  },[category])
   
   return (
     <>
