@@ -37,7 +37,7 @@ const AllIndustry = () => {
     try{
 
       let ind = new FormData()
-      if(addIndustry.name && addIndustry.featured && addIndustry.image){
+      if(addIndustry.name && addIndustry.image){
         ind.append("name",addIndustry.name)
         ind.append("fImage",addIndustry.image)
         ind.append("featured",addIndustry.featured)

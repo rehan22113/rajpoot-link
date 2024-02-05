@@ -36,7 +36,7 @@ const AllPrincipal = () => {
     try{
 
       let ind = new FormData()
-      if(addPrincipal.name && addPrincipal.featured && addPrincipal.image){
+      if(addPrincipal.name && addPrincipal.image){
         ind.append("name",addPrincipal.name)
         ind.append("fImage",addPrincipal.image)
         ind.append("featured",addPrincipal.featured)
@@ -74,17 +74,7 @@ const AllPrincipal = () => {
     </div>
   </div>
   <div className="mt-6 md:flex md:items-center md:justify-between">
-    {/* <div className="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-      <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 bg-gray-100 sm:text-sm dark:bg-gray-800 dark:text-gray-300">
-        View all
-      </button>
-      <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-        Published
-      </button>
-      <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-        Draft
-      </button>
-    </div> */}
+   
     <div className="relative flex items-center mt-4 md:mt-0">
       <span className="absolute">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
