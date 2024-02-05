@@ -15,7 +15,7 @@ const Principal = () => {
 
   useEffect(()=>{
     category?setPosts(category.data):console.log("fetching filter Principal")
- },[isFetching])
+ },[isFetching,isLoading])
   return (
     <div className='bg-white'>
     <Navbar/>

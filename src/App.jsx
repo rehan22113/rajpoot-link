@@ -21,6 +21,7 @@ import Principal from './Pages/Principal'
 import Messages from './Pages/Admin/Tabs/Messages'
 import ScrollToTop from './Components/ScrollToTop'
 import About from './Pages/About'
+import AllClient from './Pages/Admin/Tabs/AllClient'
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
         <Route path='newpost' element={<AddNewPost/>} />
         <Route path='principals' element={<AllPrincipal/>} />
         <Route path='category' element={<AllCategory/>} />
+        <Route path='client' element={<AllClient/>} />
         <Route path='industry' element={<AllIndustry/>} />
         <Route path='messages' element={<Messages/>} />
         <Route path='setting' element={<Setting/>} />

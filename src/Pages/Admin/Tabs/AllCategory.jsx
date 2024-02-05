@@ -133,12 +133,11 @@ const AllCategory = () => {
   const deleteCategory=(id)=>{
     deleteCat(id)
     refetch()
-
   }
 
   useEffect(()=>{
     data?setCategory(data.data):console.log("Fetching Categories")
-  },[isFetching])
+  },[isFetching,isLoading])
   
   function closeModal() {
     setIsOpen(false)
@@ -147,11 +146,11 @@ const AllCategory = () => {
     setIsOpen(true)
   }
 
-  const SubmitModal=()=>{
+  const SubmitModal=async()=>{
     try{
 
       let ind = new FormData()
-      if(addNewCategory.name && addNewCategory.featured && addNewCategory.image){
+      if(addNewCategory.name && addNewCategory.image){
         ind.append("name",addNewCategory.name)
         ind.append("fImage",addNewCategory.image)
         ind.append("featured",addNewCategory.featured)
@@ -165,8 +164,11 @@ const AllCategory = () => {
           image:"",
           parent:""
         })
+        // const {data} = await refetch()
+        //  console.log("data",data)
+        setAddNewCategory({name:"",fImage:"",featured:false,parent:null})
+         setCategory(data.data)
     setIsOpen(false)
-    refetch()
       }else{
         alert("Some Fields are empty")
       }
@@ -303,7 +305,7 @@ const AllCategory = () => {
   <div className="my-6">
     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Featured</label>
     <select type="text" onChange={(e)=>{setAddNewCategory({...addNewCategory,featured:e.target.value})}} id="name" defaultValue={addNewCategory.featured} className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Women Cloths etc." required >
-      <option value={true}>Yes</option>
+      <option selected value={true}>Yes</option>
       <option value={false}>No</option>
     </select>
   </div>
