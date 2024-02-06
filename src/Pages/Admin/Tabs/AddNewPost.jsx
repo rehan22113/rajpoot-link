@@ -23,8 +23,8 @@ const AddNewPost = () => {
     title:"",
     content:"",
     weburl:"",
-    isFeatured:"",
-    status:"",
+    isFeatured:false,
+    status:false,
     tags:"",
     fb:"",
     tw:"",
@@ -57,6 +57,7 @@ const AddNewPost = () => {
         const res =await SubmitNewPost(ind)
         console.log("Data send",result)
         if(res.data.msg=="Post Inserted"){
+          alert("Post Inserted Successfully")
           Navigate("/myadmin-panel/allpost")
         }else{
           alert("Something went Wrong! Try Again please")
@@ -166,14 +167,14 @@ const AddNewPost = () => {
     </div>
     <div className='py-2'>
       <h1>Status</h1>
-    <select onChange={(e)=>{setNewPost({...newPost,status:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" type="text" >
+    <select defaultValue={newPost.status} onChange={(e)=>{setNewPost({...newPost,status:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" type="text" >
       <option value={true}>Active</option>
       <option value={false}>in-Active</option>
     </select>
     </div>
     <div className='py-2'>
       <h1>Featured</h1>
-      <select onChange={(e)=>{setNewPost({...newPost,isFeatured:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" type="text" >
+      <select defaultValue={newPost.isFeatured} onChange={(e)=>{setNewPost({...newPost,isFeatured:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" type="text" >
       <option value={false}>No</option>
       <option value={true}>Yes</option>
     </select>

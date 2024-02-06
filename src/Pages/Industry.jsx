@@ -15,7 +15,7 @@ const Industry = () => {
 
   useEffect(()=>{
     category?setPosts(category.data):console.log("fetching filter industry")
- },[isFetching])
+ },[isFetching,category])
   return (
     <div className='bg-white'>
     <Navbar/>
