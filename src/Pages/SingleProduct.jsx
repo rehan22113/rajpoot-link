@@ -21,7 +21,7 @@ const SingleProduct = () => {
     <div className="container px-6 mx-auto flex flex-wrap items-start">
     <div className='lg:w-1/2 flex items-start'>
 
-      <img alt="ecommerce" className=" w-full min-h-[500px] object-fit object-center rounded" src={`http://localhost:3000/uploads/PostfeaturedImage/${singlePost.fImage}`}  />
+      <img alt="ecommerce" className=" w-full min-h-[500px] object-fit object-center rounded" src={`${singlePost.fImage}`}  />
     </div>
       <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 className="text-sm title-font pb-4 text-gray-500 tracking-widest">Home/{singlePost?.category?.name}/{singlePost?.title}</h2>

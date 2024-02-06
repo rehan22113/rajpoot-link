@@ -16,7 +16,7 @@ const Category = () => {
 
   useEffect(()=>{
     category?setPosts(category.data):console.log("fetching filter category")
- },[isFetching])
+ },[isFetching,category])
   return (
     
     <div className='bg-white'>

@@ -2,20 +2,20 @@ import React, { useState,useEffect,Fragment } from 'react'
 import Navbar from '../Components/Layout/Navbar'
 import Footer from '../Components/Layout/Footer'
 import BoxProduct from '../Components/ShopProduct/BoxProduct'
-import { useGetPostByIndustryQuery } from '../Redux/Api/PostApi'
+import { useGetPostByPrincipalQuery } from '../Redux/Api/PostApi'
 import { useLocation, useParams } from 'react-router-dom'
 
 const Principal = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
-  const {data:category,isFetching} = useGetPostByIndustryQuery(id)
+  const {data:category,isFetching} = useGetPostByPrincipalQuery(id)
   const [posts,setPosts] = useState([])
 
 
   useEffect(()=>{
     category?setPosts(category.data):console.log("fetching filter Principal")
- },[isFetching])
+ },[isFetching,category])
   return (
     <div className='bg-white'>
     <Navbar/>
