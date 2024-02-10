@@ -3,6 +3,7 @@ import Navbar from '../Components/Layout/Navbar'
 import Footer from '../Components/Layout/Footer'
 import { useParams } from 'react-router-dom'
 import { useGetSinglePostQuery } from '../Redux/Api/PostApi'
+import ImageSlider from '../Components/ImageSlider'
 
 const SingleProduct = () => {
   const {id} = useParams()
@@ -16,21 +17,23 @@ const SingleProduct = () => {
   return (
     <>
     <Navbar/>
-   <section className="text-gray-600 body-font overflow-hidden">
+   <section className="overflow-hidden">
   <div className="container px-5 py-6 mx-auto">
-    <div className="container px-6 mx-auto flex flex-wrap items-start">
-    <div className='lg:w-1/2 flex items-start'>
-
-      <img alt="ecommerce" className=" w-full min-h-[500px] object-fit object-center rounded" src={`${singlePost.fImage}`}  />
+    <div className="container px-2 mx-auto flex flex-wrap items-start">
+    <div className='lg:w-1/3 w-[98%]'>
+      <ImageSlider slides={singlePost.fImage}/>
+      {/* <img alt="ecommerce" className=" w-full min-h-[500px] object-fit object-center rounded" src={singlePost.fImage[0]}  /> */}
     </div>
-      <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+      <div className="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 className="text-sm title-font pb-4 text-gray-500 tracking-widest">Home/{singlePost?.category?.name}/{singlePost?.title}</h2>
         <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">{singlePost?.title}</h1>
         <div className='w-20 bg-[#d4d4d4] h-1 mb-3' />
        
-        <p className="leading-relaxed">
+        {/* <p className="leading-relaxed">
         {singlePost?.content}
-        </p>
+        </p> */}
+        <article dangerouslySetInnerHTML={{__html:singlePost.content}}>
+    </article>
         <div className="flex flex-col mt-6 items-start gap-5 pb-5 border-b-2 border-gray-100 mb-5">
         <p className="leading-relaxed text-md">
         <span className='font-bold'>Categories:</span>

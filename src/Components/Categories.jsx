@@ -8,7 +8,7 @@ const Categories = ({category}) => {
  
   return (
     <section className="my-8">
-    <div className="container mx-auto px-10">
+    <div className="container mx-auto px-2">
       
       <div className="grid mt-8">
       <Swiper
@@ -17,6 +17,16 @@ const Categories = ({category}) => {
         pagination={{
           clickable: true,
         }}
+        breakpoints={{
+            400: {
+                slidesPerView: 2,
+                spaceBetweenSlides: 1
+            },
+            999: {
+                slidesPerView: 4,
+                spaceBetweenSlides: 40
+            }
+            }}
         modules={[Navigation]}
         className="mySwiper"
       >

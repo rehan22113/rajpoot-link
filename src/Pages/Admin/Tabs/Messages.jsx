@@ -7,6 +7,7 @@ import { useGetContactQuery } from '../../../Redux/Api/ContactApi'
 const Messages = () => {
   const Navigate = useNavigate()
   const {data,isLoading,isFetching,refetch} = useGetContactQuery()
+  const [contactData,setContactData] = useState([])
   const [isOpen, setIsOpen] = useState(false)
 
 
@@ -18,7 +19,7 @@ const Messages = () => {
   }
 
   useEffect(()=>{
-    data?setIndustry(data.data):console.log("fetching",isFetching)
+    data?setContactData(data.data):console.log("fetching",isFetching)
   },[isFetching,isLoading])
   
   return (
@@ -86,10 +87,11 @@ const Messages = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-              <tr>
+            {contactData && contactData.map((item)=>(
+              <tr key={item._id}>
                 <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                   <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">Catalog</h2>
+                    <h2 className="font-medium text-gray-800 dark:text-white ">{item.email}</h2>
                     {/* <p className="text-sm font-normal text-gray-600 dark:text-gray-400">catalogapp.io</p> */}
                   </div>
                 </td>
@@ -100,8 +102,7 @@ const Messages = () => {
                 </td> */}
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                 <textarea disabled className="text-sm font-normal p-1 text-white">
-                Eiusmod sunt officia sunt nostrud velit enim nisi veniam reprehenderit fugiat.
-
+                {item.message}
                 </textarea>
                 </td>
                 
@@ -113,106 +114,8 @@ const Messages = () => {
                   </button>
                 </td>
               </tr>
-              <tr>
-                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                  <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">Circooles</h2>
-                    <p className="text-sm font-normal text-gray-600 dark:text-gray-400">getcirooles.com</p>
-                  </div>
-                </td>
-                
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                <textarea disabled className="text-sm font-normal p-1 text-white">
-                  Consectetur esse quis do amet dolore voluptate nostrud dolore aute cupidatat ex.
-                </textarea>
-                </td>
-                
-                
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                  <button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                    </svg>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                  <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">Sisyphus</h2>
-                    <p className="text-sm font-normal text-gray-600 dark:text-gray-400">sisyphus.com</p>
-                  </div>
-                </td>
-                {/* <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                  <div className="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                    Customer
-                  </div>
-                </td> */}
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                <textarea disabled className="text-sm font-normal p-1 text-white">
-                  Occaecat eu nostrud dolore nostrud adipisicing sunt quis anim quis exercitation exercitation ad anim aliquip.
-                </textarea>
-                </td>
-                
-                
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                  <button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                    </svg>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                  <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">Hourglass</h2>
-                    <p className="text-sm font-normal text-gray-600 dark:text-gray-400">hourglass.app</p>
-                  </div>
-                </td>
-                
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                <textarea disabled className="text-sm font-normal p-1 text-white">
-                  Aute laborum est ut ex dolore ex magna magna sit id.
-                </textarea>
-                </td>
-                
-                
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                  <button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                    </svg>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                  <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">Quotient</h2>
-                    <p className="text-sm font-normal text-gray-600 dark:text-gray-400">quotient.co</p>
-                  </div>
-                </td>
-                {/* <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                  <div className="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                    Customer
-                  </div>
-                </td> */}
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                  <textarea disabled className="text-sm font-normal p-1 text-white">
-                    Laboris duis irure cillum reprehenderit aute consequat magna.
-                  </textarea>
-                </td>
-                
-                
-                <td className="px-4 py-4 text-sm whitespace-nowrap">
-                  <button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                    </svg>
-                  </button>
-                </td>
-              </tr>
+            ))}
+             
             </tbody>
           </table>
         </div>

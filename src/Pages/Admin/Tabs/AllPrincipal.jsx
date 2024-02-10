@@ -68,7 +68,7 @@ const AllPrincipal = () => {
     </div>
     <div className="flex items-center mt-4 gap-x-3">
       
-      <button onClick={openModal} className="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+      <button onClick={openModal} className="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200  rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-500 bg-blue-600">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
@@ -80,21 +80,21 @@ const AllPrincipal = () => {
    
     <div className="relative flex items-center mt-4 md:mt-0">
       <span className="absolute">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mx-3 text-gray-600">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
       </span>
-      <input type="text" placeholder="Search" className="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+      <input type="text" placeholder="Search" className="block w-full py-1.5 pr-5  border rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 bg-gray-900 text-gray-300 border-gray-600  focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
     </div>
   </div>
   <div className="flex flex-col mt-6">
     <div className=" overflow-x-auto sm:-mx-6 lg:-mx-4">
       <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-        <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 sticky top-0 dark:bg-gray-800">
+        <div className="overflow-hidden border  border-gray-700 md:rounded-lg">
+          <table className="min-w-full divide-y  divide-gray-700">
+            <thead className=" sticky top-0 bg-gray-800">
               <tr>
-                <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-400">
                   <button className="flex items-center gap-x-3 focus:outline-none">
                     <span>Name</span>
                     <svg className="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@ const AllPrincipal = () => {
                 {/* <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   Parent
                 </th> */}
-                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-400">
                   Thumbnail
                 </th>
                 
@@ -116,13 +116,13 @@ const AllPrincipal = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+            <tbody className="divide-y divide-gray-700 bg-gray-900">
             {principal?.map((item)=>(
 
 <tr key={item._id}> 
   <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
     <div>
-      <h2 className="font-medium text-gray-800 dark:text-white ">{item.name}</h2>
+      <h2 className="font-medium text-white ">{item.name}</h2>
      
     </div>
   </td>
@@ -138,7 +138,7 @@ const AllPrincipal = () => {
 <Menu as="div" className="relative inline-block text-left">
 <div>
 <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-<button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
+<button className="px-1 py-1 transition-colors duration-200 rounded-lg text-gray-300 hover:bg-gray-100">
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
 </svg>
@@ -211,11 +211,11 @@ Delete
     </div>
   </div>
   <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
-    <div className="text-sm text-gray-500 dark:text-gray-400">
+    <div className="text-sm text-gray-400">
       Page <span className="font-medium text-gray-700">1 of 10</span> 
     </div>
     <div className="flex items-center mt-4 gap-x-4 sm:mt-0">
-      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm capitalize transition-colors duration-200 border rounded-md sm:w-auto gap-x-2 bg-gray-900 text-gray-200 border-gray-700 hover:bg-gray-800">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
           <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
         </svg>
@@ -223,7 +223,7 @@ Delete
           previous
         </span>
       </a>
-      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm capitalize transition-colors duration-200 border rounded-md sm:w-auto gap-x-2 bg-gray-900 text-gray-200 border-gray-700 hover:bg-gray-800">
         <span>
           Next
         </span>
@@ -271,18 +271,18 @@ Delete
 <form>
 <div className="my-6">
     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name of Principal</label>
-    <input type="text" onChange={(e)=>{setAddPrincipal({...addPrincipal,name:e.target.value})}} id="name" value={addPrincipal.name} className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="eg. Bricks.." required />
+    <input type="text" onChange={(e)=>{setAddPrincipal({...addPrincipal,name:e.target.value})}} id="name" value={addPrincipal.name} className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" placeholder="eg. Bricks.." required />
   </div>
   <div className="my-6">
     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Featured</label>
-    <select type="text" onChange={(e)=>{setAddPrincipal({...addPrincipal,featured:e.target.value})}} id="name" defaultValue={addPrincipal.featured} className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required >
+    <select type="text" onChange={(e)=>{setAddPrincipal({...addPrincipal,featured:e.target.value})}} id="name" defaultValue={addPrincipal.featured} className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" required >
       <option value={true}>Yes</option>
       <option value={false}>No</option>
     </select>
   </div>
   <div className="mb-6">
     <label htmlFor="file" className="block mb-2 text-sm font-medium text-gray-900">Thumbnail Image</label>
-    <input onChange={(e)=>{setAddPrincipal({...addPrincipal,image:e.target.files[0]})}} type="file" id="file" className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+    <input onChange={(e)=>{setAddPrincipal({...addPrincipal,image:e.target.files[0]})}} type="file" id="file" className=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-100 focus:ring-blue-500 focus:border-blue-500" required />
   </div>
 
                   <div className="mt-4">
