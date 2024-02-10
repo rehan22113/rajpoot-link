@@ -17,7 +17,7 @@ const Footer = () => {
           <Link to="/#">
             <img className="w-auto h-32" src="/logo_rajpoot.png" alt={"logo"} />
           </Link>
-          <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">Join 31,000+ other and never miss out on new tips, tutorials, and more.</p>
+          {/* <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">Join 31,000+ other and never miss out on new tips, tutorials, and more.</p> */}
           <div className="flex mt-6 -mx-2">
             <a href="#" className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Reddit">
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,8 +63,8 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="text-gray-700 uppercase dark:text-white">Contact</h3>
-            <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">+1 526 654 8965</span>
-            <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">example@email.com</span>
+            <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">(+92) 51 512 4820 - 21</span>
+            <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"> info@rajpootlinks.com</span>
           </div>
         </div>
       </div>

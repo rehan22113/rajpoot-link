@@ -6,10 +6,11 @@ import { useGetPrincipalQuery } from '../../../Redux/Api/PrincipalApi';
 import { useNewPostMutation } from '../../../Redux/Api/PostApi';
 import { useNavigate } from 'react-router-dom';
 import CategorySelect from './CategorySelect';
+import TextEditor from '../../../Components/Admin/TextEditor';
 
 const AddNewPost = () => {
   const Navigate = useNavigate()
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState([]);
   const {data:category} = useGetCategoryQuery()
   const {data:industry} = useGetIndustryQuery()
   const {data:principal} = useGetPrincipalQuery()
@@ -19,7 +20,7 @@ const AddNewPost = () => {
     category:[],
     principal:"",
     industry:"",
-    image:"",
+    image:[],
     title:"",
     content:"",
     weburl:"",
@@ -31,6 +32,10 @@ const AddNewPost = () => {
     insta:""
   })
 
+  const handleContent=(content)=>{
+      setNewPost({...newPost,content:content})
+  }
+
   useEffect(()=>{
     category?setCategoryFetch(category.data):setCategoryFetch([])
   },[category])
@@ -39,13 +44,16 @@ const AddNewPost = () => {
     try{
 
       let ind = new FormData()
-      console.log("there we are ",newPost)
+      // console.log("there we are ",newPost)
       if(newPost.title && newPost.image && newPost.category){
         ind.append("title",newPost.title)
         ind.append("category",JSON.stringify(newPost.category))
         ind.append("principal",newPost.principal)
         ind.append("industry",newPost.industry)
-        ind.append("fImage",newPost.image)
+        // ind.append("fImage",newPost.image)
+        newPost.image.forEach((image, index) => {
+          ind.append(`fImage`, image);
+        });
         ind.append("content",newPost.content)
         ind.append("weburl",newPost.weburl)
         ind.append("isFeatured",newPost.isFeatured)
@@ -80,9 +88,24 @@ const AddNewPost = () => {
     }
   };
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setNewPost({...newPost,image:file})
-    setSelectedImage(file);
+    const files = e.target.files;
+    const newImages = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      newImages.push(file);
+    }
+    setNewPost({...newPost,image:newImages})
+    setSelectedImage(newImages);
+  };
+
+  const handleRemoveImage = (index) => {
+    console.log(index)
+    const updatedImages = [...selectedImage];
+    updatedImages.splice(index, 1);
+    setNewPost({...newPost,image:updatedImages})
+    setSelectedImage(updatedImages);
+
   };
   const resetCategory = () => {
     // Reset the category field in newPost
@@ -91,6 +114,7 @@ const AddNewPost = () => {
       category: [],
     }));
   };
+
   return (
     <>
 
@@ -100,39 +124,45 @@ const AddNewPost = () => {
   Add New Post</div>
 
   
-  <div className=" w-full flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-5xl">
+  <div className=" w-full flex flex-col border p-4 shadow-lg max-w-5xl">
 
   <div className='py-2'>
-    
-{selectedImage ? (
-        <div>
+  {selectedImage.length>0 ? 
+  <div>
           <h2>Preview:</h2>
-          <img src={URL.createObjectURL(selectedImage)} alt="Selected" className='w-1/2' />
-          <button onClick={()=>setSelectedImage(null)} className='bg-[#550f0f] p-2 my-1 text-white rounded-sm'>
-            Remove
-          </button>
-        </div>
-      ):(
-<div className="flex items-center justify-center w-full">
-  <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+          <div className='grid grid-cols-5 gap-3 '>
+
+          {selectedImage.map((image, index) => (
+            <div key={index} className='mb-4'>
+              <img src={URL.createObjectURL(image)} alt={`Selected ${index}`} className='w-full h-[200px] object-fill' />
+              <button onClick={() => handleRemoveImage(index)} className='bg-[#550f0f] p-2 my-1 text-white rounded-sm'>
+                Remove
+              </button>
+            </div>
+          ))}
+      </div>
+          </div>
+          :<div className="flex items-center justify-center w-full">
+  <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-bray-800 bg-gray-700 hover:border-gray-500 hover:bg-gray-600">
     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-      <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+      <svg className="w-8 h-8 mb-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
       </svg>
-      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-      <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+      <p className="mb-2 text-sm text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+      <p className="text-xs text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
     </div>
-    <input id="dropzone-file" onChange={handleImageChange} accept="image/*" type="file" className="hidden" />
+    <input id="dropzone-file" onChange={handleImageChange} accept="image/*" type="file" className="hidden" multiple />
   </label>
 
 </div>
-  )}
+  }
     </div>
     <div className='py-2 w-full'>
       <h1>Title</h1>
     <input onChange={(e)=>{setNewPost({...newPost,title:e.target.value})}} className="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none w-full" spellCheck="false" placeholder="Lorem epusem edpu lo" type="text" />
     </div>
-    <textarea onChange={(e)=>{setNewPost({...newPost,content:e.target.value})}} className="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellCheck="false" placeholder="Describe everything about this post here" defaultValue={newPost.content} />
+    <TextEditor handleContent={handleContent} />
+    {/* <textarea onChange={(e)=>{setNewPost({...newPost,content:e.target.value})}} className="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellCheck="false" placeholder="Describe everything about this post here" defaultValue={newPost.content} /> */}
     <div className='py-2 w-full'>
       <h1>Web URL ('example.com/xyz')</h1>
     <input onChange={(e)=>{setNewPost({...newPost,weburl:e.target.value})}} className="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none w-full" spellCheck="false" placeholder="Title" type="text" />
@@ -152,6 +182,7 @@ const AddNewPost = () => {
     <div className='py-2'>
       <h1>Industry</h1>
     <select onChange={(e)=>{setNewPost({...newPost,industry:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" placeholder="Title" type="text" >
+    <option value={null}>--select Industry--</option>
     {industry?.data.map((item)=>(
       <option key={item._id} value={item._id}>{item.name}</option>
       ))}
@@ -160,6 +191,7 @@ const AddNewPost = () => {
     <div className='py-2'>
       <h1>Principal</h1>
     <select onChange={(e)=>{setNewPost({...newPost,principal:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" placeholder="Title" type="text" >
+    <option value={null}>--select Principal--</option>
     {principal?.data.map((item)=>(
       <option key={item._id} value={item._id}>{item.name}</option>
       ))}

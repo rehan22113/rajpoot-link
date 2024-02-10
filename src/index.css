@@ -6,12 +6,12 @@
 
 
 
-*{
+.para{
     font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
   }
-h1,h2{
+.heading{
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-style: normal;

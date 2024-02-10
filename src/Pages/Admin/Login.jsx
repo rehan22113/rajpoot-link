@@ -18,12 +18,13 @@ const Login = () => {
   const HandleLogin=async()=>{
 if(loginData.email && loginData.password){
   const data =await loginUserData(loginData)
-  // console.log("login datas",data.data)
-  if(data.data.msg=="Login Successfull"){
+  console.log("login datas",data)
+  if(data.data && data.data.msg=="Login Successfull"){
     LoggedIn("/myadmin-panel")
     // Navigate()
   }else{
     alert("Wrong Crediential")
+    setLoginData({...loginData,password:""})
   }
   }else{
     alert("Field Empty")
@@ -64,9 +65,9 @@ if(loginData.email && loginData.password){
         </div>
       </button>
   </div>
-  <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
-    <span className="text-sm text-gray-600 dark:text-gray-200">Forget Password? </span>
-    <a href="#" className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Click here</a>
+  <div className="flex items-center justify-center py-4 text-center bg-gray-700">
+    <span className="text-sm text-gray-200">Forget Password? </span>
+    <a href="#" className="mx-2 text-sm font-bold text-blue-400 hover:underline">Click here</a>
   </div>
 </div>
 <div>

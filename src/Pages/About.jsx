@@ -44,7 +44,7 @@ Incorporated in 2011, we started as trading company mostly dealing with general 
   <svg id="sw-js-blob-svg" className='md:block z-0 absolute hidden w-[24em] top-[50rem] right-[0rem]' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">                    <defs>                         <linearGradient id="sw-gradient" x1={0} x2={1} y1={1} y2={0}>                            <stop id="stop1" stopColor="rgba(255, 222, 90, 1)" offset="0%" />                            <stop id="stop2" stopColor="rgba(251, 168, 31, 1)" offset="100%" />                      </linearGradient>                  </defs>                <path fill="url(#sw-gradient)" d="M20.5,-23.4C27.9,-18.2,36.2,-13,38.8,-5.7C41.4,1.6,38.4,11,33.4,18.9C28.4,26.9,21.4,33.3,13.9,34.6C6.3,35.8,-1.9,31.9,-10.8,29C-19.7,26.1,-29.2,24.2,-34.5,18.3C-39.8,12.5,-40.8,2.5,-38.4,-6C-36,-14.5,-30,-21.6,-23.1,-26.9C-16.1,-32.3,-8,-35.8,-0.8,-34.9C6.5,-34,13.1,-28.7,20.5,-23.4Z" width="100%" height="100%" transform="translate(50 50)" style={{transition: 'all 0.3s ease 0s'}} strokeWidth={0} />            </svg>
 </section>
 
-<section className="bg-white dark:bg-gray-900">
+<section className="bg-gray-900">
   <div className="lg:flex container px-6 md:w-[95%] w-[95%] py-16 mx-auto text-left">
     <div className="lg:-mx-6 lg:flex lg:items-center">
       <img className="object-cover object-center lg:w-1/2 lg:mx-6 w-full h-96 rounded-lg lg:h-[36rem]" src="https://dummyimage.com/400x300" alt />
