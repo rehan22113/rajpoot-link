@@ -16,14 +16,14 @@ const CategoryApi = MainApi.injectEndpoints({
                 method:'POST',
                 body:data
             }),
-            invalidatesTags: ['Post','Industry','Principal','Client']
+            invalidatesTags: ['Category']
         }),
         deleteCategory: build.mutation({
             query:(id)=>({
                 url:`/category/${id}`,
                 method:'DELETE'
             }),
-            invalidatesTags: ['Post','Industry','Principal','Client']
+            invalidatesTags: ['Category']
         }),
     })
 })

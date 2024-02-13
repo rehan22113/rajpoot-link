@@ -16,14 +16,14 @@ const PrincipalApi = MainApi.injectEndpoints({
                 method:'POST',
                 body: data
             }),
-            invalidatesTags: ['Post','Category','Industry','Client']
+            invalidatesTags: ['Principal']
         }),
         deletePrincipal: build.mutation({
             query:(id)=>({
                 url:`/principal/${id}`,
                 method:'DELETE'
             }),
-            invalidatesTags: ['Post','Category','Industry','Client']
+            invalidatesTags: ['Principal']
         }),
     })
 })

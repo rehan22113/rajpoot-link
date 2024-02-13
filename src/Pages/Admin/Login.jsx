@@ -18,7 +18,6 @@ const Login = () => {
   const HandleLogin=async()=>{
 if(loginData.email && loginData.password){
   const data =await loginUserData(loginData)
-  console.log("login datas",data)
   if(data.data && data.data.msg=="Login Successfull"){
     LoggedIn("/myadmin-panel")
     // Navigate()
@@ -38,7 +37,7 @@ if(loginData.email && loginData.password){
 
   <div className="px-6 py-4">
     <div className="flex justify-center items-center mx-auto">
-      <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt />
+      <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt={"login"} />
     </div>
     <h3 className="mt-3 text-xl font-medium text-center text-gray-200">Welcome To Rajpoot Links</h3>
     {/* <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Login or create account</p> */}
