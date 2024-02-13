@@ -7,13 +7,14 @@ import { useGetCategoryByLimitQuery, useGetCategoryQuery } from '../../Redux/Api
 
 
 const Navbar = () => {
-  const {data:category,isFetching} = useGetCategoryByLimitQuery(6)
-  const {data:industry} = useGetIndustryByLimitQuery(6)
-  const {data:principal} = useGetPrincipalByLimitQuery(6)
+  const {data:category,isFetching} = useGetCategoryQuery()
+  const {data:industry} = useGetIndustryQuery()
+  const {data:principal} = useGetPrincipalQuery()
   const [filterCategory,setFilterCategory] = useState({data:[]})
 
   const FilterParentCategory=()=>{
     const filteredCategories = category?.data?.filter((item) =>item.parent ===null);
+    console.log("there we goooo",filteredCategories)
     setFilterCategory({data:filteredCategories})
   }
 
