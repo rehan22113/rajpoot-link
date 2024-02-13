@@ -20,7 +20,7 @@ const AllPost = () => {
   },[])
   useEffect(()=>{
     data?setPost(data.data):console.log("fetching",isFetching)
-  },[isFetching])
+  },[data])
   const Navigate = useNavigate();
   return (
     <>
@@ -124,7 +124,9 @@ const AllPost = () => {
 
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
-                <h4 className="text-gray-200">{item.industry?item.industry.name:"No Industry"}</h4>
+                {item.industry?item.industry.map((cc,cIndex)=>(
+                    <span className="text-gray-200">{cc.name}{","}</span>
+                     )):"No industry"}
 
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
