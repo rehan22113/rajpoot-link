@@ -3,14 +3,17 @@ import TopNav from '../../../Components/Admin/TopNav'
 import { Menu,Transition } from '@headlessui/react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDeletePostMutation, useGetAllPostQuery } from '../../../Redux/Api/PostApi'
+import Loading from '../../../Components/Loading'
 
 const AllPost = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [post,setPost] = useState([])
+  const [loading,setLoading] = useState(false)
   const {data,error,isLoading,isFetching,refetch} = useGetAllPostQuery(false);
   const [deleteCat] = useDeletePostMutation()
 
   const deletePrincipal=(id)=>{
+    setLoading(true)
     deleteCat(id)
     refetch()
 
@@ -20,10 +23,16 @@ const AllPost = () => {
   },[])
   useEffect(()=>{
     data?setPost(data.data):console.log("fetching",isFetching)
+    setLoading(false)
   },[data])
   const Navigate = useNavigate();
   return (
     <>
+    <div className='flex justify-center'>
+    {loading && 
+    <Loading/>
+    }
+    </div>
     <TopNav/>
     <section className="container px-2 mx-auto py-2">
   <div className="sm:flex sm:items-center sm:justify-between">
