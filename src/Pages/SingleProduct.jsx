@@ -42,7 +42,8 @@ const SingleProduct = () => {
         </p>
         <p className="leading-relaxed text-md">
         <span className='font-bold'>Industry:</span>
-        {" "+singlePost?.industry?.name}
+        {singlePost.industry?singlePost?.industry.map((cc,cIndex)=>
+             (cc.name+" , ")):"industry"}
         </p>
         <p className="leading-relaxed text-md">
         <span className='font-bold'>Principal:</span>
