@@ -17,15 +17,14 @@ const IndustryApi = MainApi.injectEndpoints({
                 method:'POST',
                 body:data
             }),
-            invalidatesTags: ['Post','Category','Principal','Client']
-            
+            invalidatesTags: ['Industry'],
         }),
         deleteIndustry: build.mutation({
             query:(id)=>({
                 url:`/industry/${id}`,
                 method:'DELETE'
             }),
-            invalidatesTags: ['Post','Category','Principal','Client']
+            invalidatesTags: ['Industry']
         }),
     })
 })

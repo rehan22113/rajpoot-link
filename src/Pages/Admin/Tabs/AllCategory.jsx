@@ -3,12 +3,12 @@ import TopNav from '../../../Components/Admin/TopNav'
 import { useNavigate } from 'react-router-dom'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { useDeleteCategoryMutation, useGetCategoryQuery, usePostCategoryMutation } from '../../../Redux/Api/CategoryApi'
-import { useDeletePostMutation } from '../../../Redux/Api/PostApi'
+import Loading from '../../../Components/Loading'
 
 
-const renderCategories = (categories,deleteCategory, parentId = null) => {
 
-  
+
+const renderCategories = (categories,deleteCategory, parentId = null) => { 
 
   const filteredCategories = categories.filter(category => category.parent === parentId);
 
@@ -43,7 +43,7 @@ const renderCategories = (categories,deleteCategory, parentId = null) => {
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
 
-<Menu as="div" className="relative inline-block text-left">
+<Menu as="div" className="overflow-hidden text-left">
 <div>
 <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
 <button className="px-1 py-1 transition-colors duration-200 rounded-lg text-gray-300 hover:bg-gray-100">
@@ -62,7 +62,7 @@ leave="transition ease-in duration-75"
 leaveFrom="transform opacity-100 scale-100"
 leaveTo="transform opacity-0 scale-95"
 >
-<Menu.Items className="absolute z-50 right-8 top-0 mt-2 w-24 origin-bottom-left divide-y divide-gray-100 rounded-md  shadow-lg ring-1 ring-black/5 focus:outline-none">
+<Menu.Items className="absolute z-50 right-28 -mt-20 w-24 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
 <div className="px-1 py-1 ">
 <Menu.Item>
 {({ active }) => (
@@ -116,10 +116,13 @@ leaveTo="transform opacity-0 scale-95"
   );
 };
 
+
+
 const AllCategory = () => {
   const Navigate = useNavigate()
   const {data,isFetching,isLoading,refetch} = useGetCategoryQuery()
   const [isOpen, setIsOpen] = useState(false)
+  const [loading,setLoading] = useState(false)
   const [category,setCategory] = useState([])
   const [addNewCategory,setAddNewCategory] = useState({
     name:"",
@@ -131,13 +134,15 @@ const AllCategory = () => {
   const [deleteCat] = useDeleteCategoryMutation()
 
   const deleteCategory=(id)=>{
+    setLoading(true)
     deleteCat(id)
     refetch()
   }
 
   useEffect(()=>{
     data?setCategory(data.data):console.log("Fetching Categories")
-  },[isFetching,isLoading])
+    setLoading(false)
+  },[data])
   
   function closeModal() {
     setIsOpen(false)
@@ -148,7 +153,8 @@ const AllCategory = () => {
 
   const SubmitModal=async()=>{
     try{
-
+      
+      setLoading(true)
       let ind = new FormData()
       if(addNewCategory.name && addNewCategory.image){
         ind.append("name",addNewCategory.name)
@@ -167,7 +173,7 @@ const AllCategory = () => {
         // const {data} = await refetch()
         //  console.log("data",data)
         setAddNewCategory({name:"",fImage:"",featured:false,parent:null})
-         setCategory(data.data)
+        //  setCategory(data.data)
     setIsOpen(false)
       }else{
         alert("Some Fields are empty")
@@ -176,8 +182,37 @@ const AllCategory = () => {
       console.log("Got error in submit indsutry",err)
     }
   }
+
+  const generateOptions = (categories, parentId = null, level = 0) => {
+    const filteredCategories = categories.filter(
+      (category) => (parentId === null && category.parent === null) || category.parent === parentId
+    );
+
+    return filteredCategories.map((category2) => (
+      <React.Fragment key={category2._id}>
+        <option value={category2._id}>
+          {level > 0 && Array(level).fill('\u00A0')} {/* Add indentation for sub-categories */}
+          {parentId !== null && '- '} {/* Add a symbol to indicate sub-category */}
+          {category2.name}
+          {category2.parent && (
+            <>
+              {' '}
+              &rarr; {category.find((c) => c._id === category2.parent).name} {/* Show parent category */}
+            </>
+          )}
+        </option>
+        {generateOptions(categories, category2._id, level + 1)}
+      </React.Fragment>
+    ));
+  };
+
   return (
     <>
+    <div className='flex justify-center'>
+    {loading && 
+    <Loading/>
+    }
+    </div>
     <TopNav/>
     <section className="container px-2 mx-auto py-2">
   <div className="sm:flex sm:items-center sm:justify-between">
@@ -214,7 +249,7 @@ const AllCategory = () => {
         <div className="overflow-hidden border border-gray-700 md:rounded-lg">
           <table className="min-w-full divide-y  divide-gray-700">
            
-            <tbody className=" divide-y divide-gray-700 bg-gray-900 relative overflow-scroll">
+            <tbody className=" divide-y divide-gray-700 bg-gray-900 overflow-scroll">
             
              {renderCategories(category,deleteCategory)}            
             </tbody>
@@ -223,29 +258,7 @@ const AllCategory = () => {
       </div>
     </div>
   </div>
-  {/* <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
-    <div className="text-sm text-gray-500 dark:text-gray-400">
-      Page <span className="font-medium text-gray-700">1 of 10</span> 
-    </div>
-    <div className="flex items-center mt-4 gap-x-4 sm:mt-0">
-      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200  border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-        </svg>
-        <span>
-          previous
-        </span>
-      </a>
-      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200  border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-        <span>
-          Next
-        </span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-        </svg>
-      </a>
-    </div>
-  </div> */}
+
 </section>
 
 <Transition appear show={isOpen} as={Fragment}>
@@ -294,18 +307,20 @@ const AllCategory = () => {
     <label htmlFor="parentCat" className="block mb-2 text-sm font-medium text-gray-900">Parent Category</label>
     <select onChange={(e)=>{setAddNewCategory({...addNewCategory,parent:e.target.value})}} id="parentCat" className=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" required >
     <option value={null}>No Parent</option>
-      {category.map((item)=>(
+    {generateOptions(category)}    
+      {/* {category.map((item)=>(
       <option value={item._id}>
         {item.name}
       </option>
-      ))}
+      ))} */}
+
       
     </select>
   </div>
   <div className="my-6">
     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Featured</label>
-    <select type="text" onChange={(e)=>{setAddNewCategory({...addNewCategory,featured:e.target.value})}} id="name" defaultValue={addNewCategory.featured} className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" placeholder="Women Cloths etc." required >
-      <option selected value={true}>Yes</option>
+    <select type="text" onChange={(e)=>{setAddNewCategory({...addNewCategory,featured:e.target.value})}} id="name" value={addNewCategory.featured} className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" placeholder="Women Cloths etc." required >
+      <option value={true}>Yes</option>
       <option value={false}>No</option>
     </select>
   </div>

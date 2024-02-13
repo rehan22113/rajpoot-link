@@ -13,7 +13,7 @@ const index = () => {
 
    <aside className="flex flex-col w-[20%] h-screen sticky top-0 px-4 py-8 overflow-y-auto border-r rtl:border-r-0 rtl:border-l bg-gray-900 border-gray-700">
   <Link to="#" className='text-center flex justify-center'>
-    <img className="w-auto h-6 sm:h-7 text-center" src="https://dummyimage.com/400x200" alt />
+    <img className="w-auto h-6 sm:h-7 text-center" src="https://dummyimage.com/400x200" alt="logo" />
   </Link>
   <div className="relative mt-6">
     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -93,7 +93,7 @@ const index = () => {
   </div>
 </aside>
 
-    <main className='w-[80%] container px-2'>
+    <main className='w-[77%]'>
     <Outlet/>
     </main>
     </section>

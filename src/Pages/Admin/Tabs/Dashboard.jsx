@@ -13,7 +13,7 @@ const Dashboard = () => {
   },[isFetching])
   return (
     <div>
-    <div class="relative min-h-screen lg:flex">
+    <div className="relative min-h-screen lg:flex">
 <div className="fixed inset-0 z-20 transition-opacity bg-black opacity-30 lg:hidden" />
         <main id="content" className="flex-1 pb-12 space-y-6 overflow-y-auto bg-gray-100 lg:h-screen md:space-y-8">
   <TopNav />

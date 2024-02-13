@@ -3,6 +3,7 @@ import TopNav from '../../../Components/Admin/TopNav'
 import { Link, useNavigate } from 'react-router-dom'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { useDeleteIndustryMutation, useGetIndustryQuery, usePostIndustryMutation } from '../../../Redux/Api/IndustryApi'
+import Loading from '../../../Components/Loading'
 
 const AllIndustry = () => {
   const Navigate = useNavigate()
@@ -11,6 +12,7 @@ const AllIndustry = () => {
   const [deleteCat] = useDeleteIndustryMutation()
 
   const [isOpen, setIsOpen] = useState(false)
+  const [loading,setLoading] = useState(false)
   const [addIndustry,setAddIndustry] = useState({
     name:"",
     featured:false,
@@ -18,13 +20,14 @@ const AllIndustry = () => {
   })
   const [industry,setIndustry] = useState([])
   const deleteIndustry=(id)=>{
+    setLoading(true)
     deleteCat(id)
     refetch()
-
   }
   useEffect(()=>{
     data?setIndustry(data.data):console.log("fetching",isFetching)
-  },[isFetching,isLoading])
+    setLoading(false)
+  },[data])
 
   function closeModal() {
     setIsOpen(false)
@@ -35,7 +38,7 @@ const AllIndustry = () => {
 
   const SubmitModal=async()=>{
     try{
-
+      setLoading(true)
       let ind = new FormData()
       if(addIndustry.name && addIndustry.image){
         ind.append("name",addIndustry.name)
@@ -43,11 +46,12 @@ const AllIndustry = () => {
         ind.append("featured",addIndustry.featured)
         AddNewPost(ind)
         console.log("Data send",result)
-        const {data} = await refetch()
+        refetch()
         //  console.log("data",data)
-         setIndustry(data.data)
+        // setIndustry(data.data)
+        // setLoading(false)
         setAddIndustry({name:"",fImage:"",featured:false})
-    setIsOpen(false)
+        setIsOpen(false)
       }else{
         alert("Some Fields are empty")
       }
@@ -57,6 +61,11 @@ const AllIndustry = () => {
   }
   return (
     <>
+    <div className='flex justify-center'>
+    {loading && 
+    <Loading/>
+    }
+    </div>
     <TopNav/>
     <section className="container px-2 mx-auto py-2">
   <div className="sm:flex sm:items-center sm:justify-between">
@@ -117,7 +126,7 @@ const AllIndustry = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className=" divide-y  divide-gray-700 bg-gray-900">
+            <tbody className=" divide-y divide-gray-700 bg-gray-900">
               {industry?.map((item)=>(
 
               <tr key={item._id}> 
@@ -137,7 +146,7 @@ const AllIndustry = () => {
                 
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
 
-<Menu as="div" className="relative inline-block text-left">
+<Menu as="div" className="overflow-hidden text-left">
 <div>
 <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
 <button className="px-1 py-1 transition-colors duration-200 rounded-lg text-gray-300 hover:bg-gray-100">
@@ -156,7 +165,7 @@ leave="transition ease-in duration-75"
 leaveFrom="transform opacity-100 scale-100"
 leaveTo="transform opacity-0 scale-95"
 >
-<Menu.Items className="absolute z-50 right-10 -top-16 mt-2 w-24 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+<Menu.Items className="absolute z-50 right-20 -mt-20 w-24 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
 <div className="px-1 py-1 ">
 <Menu.Item>
 {({ active }) => (
