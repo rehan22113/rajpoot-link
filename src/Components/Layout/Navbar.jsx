@@ -14,7 +14,6 @@ const Navbar = () => {
 
   const FilterParentCategory=()=>{
     const filteredCategories = category?.data?.filter((item) =>item.parent ===null);
-    console.log("there we goooo",filteredCategories)
     setFilterCategory({data:filteredCategories})
   }
 
