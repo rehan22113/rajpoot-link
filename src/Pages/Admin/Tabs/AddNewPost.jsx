@@ -7,6 +7,7 @@ import { useNewPostMutation } from '../../../Redux/Api/PostApi';
 import { useNavigate } from 'react-router-dom';
 import CategorySelect from './CategorySelect';
 import TextEditor from '../../../Components/Admin/TextEditor';
+import Loading from '../../../Components/Loading';
 
 const AddNewPost = () => {
   const Navigate = useNavigate()
@@ -15,11 +16,12 @@ const AddNewPost = () => {
   const {data:industry} = useGetIndustryQuery()
   const {data:principal} = useGetPrincipalQuery()
   const [categoryFetch,setCategoryFetch] = useState([])
+  const [loading,setLoading] = useState(false)
   const [SubmitNewPost,result] = useNewPostMutation()
   const [newPost,setNewPost] = useState({
     category:[],
     principal:"",
-    industry:"",
+    industry:[],
     image:[],
     title:"",
     content:"",
@@ -42,14 +44,14 @@ const AddNewPost = () => {
 
   const SubmitModal=async()=>{
     try{
-
+      setLoading(true)
       let ind = new FormData()
       // console.log("there we are ",newPost)
       if(newPost.title && newPost.image && newPost.category){
         ind.append("title",newPost.title)
         ind.append("category",JSON.stringify(newPost.category))
         ind.append("principal",newPost.principal)
-        ind.append("industry",newPost.industry)
+        ind.append("industry",JSON.stringify(newPost.industry))
         // ind.append("fImage",newPost.image)
         newPost.image.forEach((image, index) => {
           ind.append(`fImage`, image);
@@ -64,9 +66,12 @@ const AddNewPost = () => {
         ind.append("insta",newPost.insta)
         const res =await SubmitNewPost(ind)
         console.log("Data send",result)
-        if(res.data.msg=="Post Inserted"){
+        if(!result.isError){
+          setLoading(true)
           alert("Post Inserted Successfully")
-          Navigate("/myadmin-panel/allpost")
+          setTimeout(()=>{
+            Navigate("/myadmin-panel/allpost")
+          },3000)
         }else{
           alert("Something went Wrong! Try Again please")
         }
@@ -114,10 +119,28 @@ const AddNewPost = () => {
       category: [],
     }));
   };
-
+  const handleIndustry =(e)=>{
+      console.log(e.target.value,e.target.name,e.target.checked)
+      if(e.target.checked && !newPost.industry.includes(e.target.value)){
+        setNewPost({...newPost,industry:[...newPost.industry,e.target.value]})
+      }else{
+        const index = newPost.industry.findIndex((item)=>item==e.target.value)
+        if(index>=0){
+          
+          const newIndustry = [...newPost.industry]
+           newIndustry.splice(index, 1);
+          console.log("check index",newIndustry,index)
+          setNewPost({...newPost,industry:newIndustry})
+        }
+      }
+  }
   return (
     <>
-
+    <div className='flex justify-center'>
+    {loading && 
+    <Loading/>
+    }
+    </div>
    <TopNav/>
    <div className='container px-4 py-4'>
   <div className="heading text-left font-bold text-2xl text-gray-800">
@@ -180,13 +203,23 @@ const AddNewPost = () => {
     
     </div>
     <div className='py-2'>
-      <h1>Industry</h1>
-    <select onChange={(e)=>{setNewPost({...newPost,industry:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" placeholder="Title" type="text" >
-    <option value={null}>--select Industry--</option>
+      <h1 className='font-bold'>Industry</h1>
+    {/* <select onChange={(e)=>{setNewPost({...newPost,industry:e.target.value})}} className="title w-full bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellCheck="false" placeholder="Title" type="text" > */}
+    {/* <option value={null}>--select Industry--</option> */}
+
+
     {industry?.data.map((item)=>(
-      <option key={item._id} value={item._id}>{item.name}</option>
+      <div key={item._id} className='w-full  grid grid-cols-3'>
+      <div className='flex justify-between items-center'>
+
+      <label className='w-1/2' htmlFor={item.name}>{item.name}</label>
+      <input onChange={handleIndustry} className="title bg-gray-100 border border-gray-300 outline-none w-full"  type="checkbox" name={item.name} value={item._id} />
+      </div>
+      </div>
       ))}
-    </select>
+    
+      {/* <option key={item._id} value={item._id}>{item.name}</option> */}
+    {/* </select> */}
     </div>
     <div className='py-2'>
       <h1>Principal</h1>
