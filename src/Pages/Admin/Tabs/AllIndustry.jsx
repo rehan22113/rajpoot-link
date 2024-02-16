@@ -2,14 +2,17 @@ import React, { useState,Fragment, useEffect } from 'react'
 import TopNav from '../../../Components/Admin/TopNav'
 import { Link, useNavigate } from 'react-router-dom'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { useDeleteIndustryMutation, useGetIndustryQuery, usePostIndustryMutation } from '../../../Redux/Api/IndustryApi'
+import { useDeleteIndustryMutation, useGetIndustryQuery, useGetSingleIndustryMutation, usePostIndustryMutation, useUpdateIndustryMutation } from '../../../Redux/Api/IndustryApi'
 import Loading from '../../../Components/Loading'
 
 const AllIndustry = () => {
   const Navigate = useNavigate()
   const {data,isLoading,isFetching,refetch} = useGetIndustryQuery()
+  const [isEdit,setIsEdit]= useState(false)
   const [AddNewPost,result] = usePostIndustryMutation()
+  const [GetIndustry] = useGetSingleIndustryMutation()
   const [deleteCat] = useDeleteIndustryMutation()
+  const [UpdatePost] = useUpdateIndustryMutation()
 
   const [isOpen, setIsOpen] = useState(false)
   const [loading,setLoading] = useState(false)
@@ -24,12 +27,30 @@ const AllIndustry = () => {
     deleteCat(id)
     refetch()
   }
+
+  const EditIndustry=async(id)=>{
+    setIsEdit(true)
+    const res = await GetIndustry(id);
+    setAddIndustry({
+      id:res.data.data._id,
+      name:res.data.data.name,
+      featured:res.data.data.featured,
+      image:"",
+    })
+    openModal()
+}
   useEffect(()=>{
     data?setIndustry(data.data):console.log("fetching",isFetching)
     setLoading(false)
   },[data])
 
   function closeModal() {
+    setAddIndustry({
+      name:"",
+    featured:false,
+    image:"",
+    parent:""
+    })
     setIsOpen(false)
   }
   function openModal() {
@@ -52,6 +73,31 @@ const AllIndustry = () => {
         // setLoading(false)
         setAddIndustry({name:"",fImage:"",featured:false})
         setIsOpen(false)
+      }else{
+        alert("Some Fields are empty")
+      }
+    }catch(err){
+      console.log("Got error in submit indsutry",err)
+    }
+  }
+
+  const UpdateModal=async(id)=>{
+    try{
+      setLoading(true)
+      let ind = new FormData()
+      if(addIndustry.name){
+        ind.append("name",addIndustry.name)
+        if(addIndustry.image){
+          ind.append("fImage",addIndustry.image)
+        }
+        ind.append("featured",addIndustry.featured)
+        
+        UpdatePost({ind,id})
+        // const {data} = await refetch()
+        //  console.log("data",data)
+        setAddIndustry({name:"",image:"",featured:false})
+        //  setCategory(data.data)
+    setIsOpen(false)
       }else{
         alert("Some Fields are empty")
       }
@@ -168,16 +214,12 @@ leaveTo="transform opacity-0 scale-95"
 <Menu.Items className="absolute z-50 right-20 -mt-20 w-24 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
 <div className="px-1 py-1 ">
 <Menu.Item>
-{({ active }) => (
-  <button
-    className={`${
-      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+<button
+    onClick={()=>EditIndustry(item._id)}
+    className={'hover:bg-black hover:text-white text-gray-900 group flex w-full items-center rounded-md px-2 py-2 text-sm'}
   >
-   
     Edit
   </button>
-)}
 </Menu.Item>
 <Menu.Item>
 {({ active }) => (
@@ -275,7 +317,7 @@ leaveTo="transform opacity-0 scale-95"
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Add New Industry
+                    {isEdit?"Update Industry":"Add New Industry"} 
                   </Dialog.Title>
                   
 <form>
@@ -296,13 +338,21 @@ leaveTo="transform opacity-0 scale-95"
   </div>
 
                   <div className="mt-4">
+                  {!isEdit?(
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={SubmitModal}
                     >
-                      Create New
+                      Create New Industry
                     </button>
+                    ): (<button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border-2 text-white bg-green-500 px-4 py-2 text-sm font-medium  hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={()=>UpdateModal(addIndustry.id)}
+                    >
+                      Update Industry
+                    </button>)}
                   </div>
 </form>
                 </Dialog.Panel>

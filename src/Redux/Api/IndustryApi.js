@@ -11,6 +11,10 @@ const IndustryApi = MainApi.injectEndpoints({
             query:(limit)=>`/industry?limit=${limit}`,
             providesTags: ['Industry']
         }),
+        getSingleIndustry: build.mutation({
+            query:(id)=>`/industry/${id}`,
+            providesTags: ['Industry']
+        }),
         postIndustry: build.mutation({
             query:(data)=>({
                 url:'/industry',
@@ -18,6 +22,14 @@ const IndustryApi = MainApi.injectEndpoints({
                 body:data
             }),
             invalidatesTags: ['Industry'],
+        }),
+        updateIndustry: build.mutation({
+            query:({ind,id})=>({
+                url:`/industry/${id}`,
+                method:'PATCH',
+                body:ind
+            }),
+            invalidatesTags: ['Industry']
         }),
         deleteIndustry: build.mutation({
             query:(id)=>({
@@ -29,4 +41,4 @@ const IndustryApi = MainApi.injectEndpoints({
     })
 })
 
-export const {useGetIndustryQuery, useGetIndustryByLimitQuery,usePostIndustryMutation, useDeleteIndustryMutation} = IndustryApi
+export const {useGetIndustryQuery, useGetSingleIndustryMutation, useGetIndustryByLimitQuery,usePostIndustryMutation, useUpdateIndustryMutation, useDeleteIndustryMutation} = IndustryApi

@@ -22,6 +22,7 @@ import Messages from './Pages/Admin/Tabs/Messages'
 import ScrollToTop from './Components/ScrollToTop'
 import About from './Pages/About'
 import AllClient from './Pages/Admin/Tabs/AllClient'
+import EditPost from './Pages/Admin/Tabs/EditPost'
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
         <Route index element={<Dashboard/>} />
         <Route path='allpost' element={<AllPost/>} />
         <Route path='newpost' element={<AddNewPost/>} />
+        <Route path='editpost/:id' element={<EditPost/>} />
         <Route path='principals' element={<AllPrincipal/>} />
         <Route path='category' element={<AllCategory/>} />
         <Route path='client' element={<AllClient/>} />

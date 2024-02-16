@@ -6,7 +6,7 @@ import Footer from '../Components/Layout/Footer'
 import Categories from '../Components/Categories'
 // import {LoginUser} from '../Redux/slice/LoginSlice'
 // import { useGetTestQuery } from '../Redux/Api/MainApi'
-import { useGetCategoryByLimitQuery } from '../Redux/Api/CategoryApi'
+import { useGetCategoryByLimitQuery, useGetCategoryQuery } from '../Redux/Api/CategoryApi'
 import { useGetPostByLimitQuery } from '../Redux/Api/PostApi'
 import { Link } from 'react-router-dom'
 import { useGetPrincipalByLimitQuery } from '../Redux/Api/PrincipalApi'
@@ -14,6 +14,7 @@ import { useGetIndustryByLimitQuery } from '../Redux/Api/IndustryApi'
 import { useGetClientByLimitQuery } from '../Redux/Api/ClientApi'
 const Home = () => {
   const {data:CategoryByLimit,isFetching} = useGetCategoryByLimitQuery(8)
+  const {data:category} = useGetCategoryQuery()
   const {data:PrincipalByLimit,isFetching:fetchPrincipal} = useGetPrincipalByLimitQuery(6)
   const {data:IndustryByLimit,isFetching:fetchIndustry} = useGetIndustryByLimitQuery(6)
   const {data:ClientByLimit,isFetching:fetchClient} = useGetClientByLimitQuery(8)
@@ -23,6 +24,16 @@ const Home = () => {
   const [limitedPost,setLimitedPost] = useState([])
   const [principalLimited,setPrincipalLimited] = useState([])
   const [clientLimited,setClientLimited] = useState([])
+  const [filterCategory,setFilterCategory] = useState({data:[]})
+
+  const FilterParentCategory=()=>{
+    const filteredCategories = category?.data?.filter((item) =>item.parent ===null);
+    setFilterCategory({data:filteredCategories})
+  }
+
+  useEffect(()=>{
+    FilterParentCategory()
+  },[category])
   
   useEffect(()=>{
     CategoryByLimit?setCategoryLimited(CategoryByLimit.data):console.log("Fetching Categoires")
@@ -59,7 +70,7 @@ const Home = () => {
 
 </header>
 
-    <Categories category={categoryLimited}/>
+    <Categories category={filterCategory}/>
     {/* <MainSlider/> */}
     <Products post={limitedPost} />
     <Partner principal={principalLimited}/>
