@@ -25,7 +25,7 @@ const SingleProduct = () => {
       {/* <img alt="ecommerce" className=" w-full min-h-[500px] object-fit object-center rounded" src={singlePost.fImage[0]}  /> */}
     </div>
       <div className="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h2 className="text-sm title-font pb-4 text-gray-500 tracking-widest">Home/{singlePost?.category?.name}/{singlePost?.title}</h2>
+        <h2 className="text-sm title-font pb-4 text-gray-500 tracking-widest">Home/{singlePost.category && singlePost.category[0]?.name}/{singlePost?.title}</h2>
         <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">{singlePost?.title}</h1>
         <div className='w-20 bg-[#d4d4d4] h-1 mb-3' />
        

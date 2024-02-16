@@ -56,6 +56,14 @@ const PostApi = MainApi.injectEndpoints({
             }),
             invalidatesTags: ['Post']
         }),
+        updatePost: build.mutation({
+            query:({ind,id})=> ({
+                url:`/post/${id}`,
+                method:'PATCH',
+                body:ind
+            }),
+            invalidatesTags: ['Post']
+        }),
         deletePost: build.mutation({
             query:(id)=>({
                 url:`/post/${id}`,
@@ -67,4 +75,4 @@ const PostApi = MainApi.injectEndpoints({
     })
 })
 
-export const {useGetAllPostQuery, useGetSinglePostQuery, useGetPostByLimitQuery, useNewPostMutation, useGetPostByCategoryQuery, useGetFilteredPostMutation, useGetLimitedPostQuery, useGetPostByIndustryQuery, useGetPostByPrincipalQuery, useDeletePostMutation} = PostApi;
+export const {useGetAllPostQuery, useGetSinglePostQuery, useGetPostByLimitQuery, useNewPostMutation, useUpdatePostMutation, useGetPostByCategoryQuery, useGetFilteredPostMutation, useGetLimitedPostQuery, useGetPostByIndustryQuery, useGetPostByPrincipalQuery, useDeletePostMutation} = PostApi;

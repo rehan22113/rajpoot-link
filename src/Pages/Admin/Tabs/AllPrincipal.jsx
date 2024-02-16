@@ -2,20 +2,25 @@ import React, { useState,Fragment, useEffect } from 'react'
 import TopNav from '../../../Components/Admin/TopNav'
 import { useNavigate } from 'react-router-dom'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { useDeletePrincipalMutation, useGetPrincipalQuery, usePostPrincipalMutation } from '../../../Redux/Api/PrincipalApi'
+import { useDeletePrincipalMutation, useGetPrincipalQuery, useGetSinglePrincipalMutation, usePostPrincipalMutation, useUpdatePrincipalMutation } from '../../../Redux/Api/PrincipalApi'
+import Loading from '../../../Components/Loading'
 
 const AllPrincipal = () => {
   const Navigate = useNavigate()
   const {data,isLoading,isFetching,refetch} = useGetPrincipalQuery()
   const [AddNewPost,result] = usePostPrincipalMutation()
   const [isOpen, setIsOpen] = useState(false)
+  const [isEdit,setIsEdit]= useState(false)
+  const [loading,setLoading] = useState(false)
   const [addPrincipal,setAddPrincipal] = useState({
     name:"",
     featured:false,
     image:""
   })
   const [principal,setPrincipal] = useState([])
+  const [GetPrincipal] = useGetSinglePrincipalMutation()
   const [deleteCat] = useDeletePrincipalMutation()
+  const [UpdatePost] = useUpdatePrincipalMutation()
 
   const deletePrincipal=(id)=>{
     deleteCat(id)
@@ -23,10 +28,28 @@ const AllPrincipal = () => {
 
   }
 
+  const EditPrincipal=async(id)=>{
+    setIsEdit(true)
+    const res = await GetPrincipal(id);
+    setAddPrincipal({
+      id:res.data.data._id,
+      name:res.data.data.name,
+      featured:res.data.data.featured,
+      image:"",
+    })
+    openModal()
+}
+
   useEffect(()=>{
     data?setPrincipal(data.data):console.log("fetching Principal")
-  },[isFetching,isLoading])
+    setLoading(false)
+  },[data])
   function closeModal() {
+    setAddNewCategory({
+      name:"",
+    featured:false,
+    image:""
+    })
     setIsOpen(false)
   }
   function openModal() {
@@ -54,8 +77,38 @@ const AllPrincipal = () => {
       console.log("Got error in submit indsutry",err)
     }
   }
+
+  const UpdateModal=async(id)=>{
+    try{
+      setLoading(true)
+      let ind = new FormData()
+      if(addPrincipal.name){
+        ind.append("name",addPrincipal.name)
+        if(addPrincipal.image){
+          ind.append("fImage",addPrincipal.image)
+        }
+        ind.append("featured",addPrincipal.featured)
+        
+        UpdatePost({ind,id})
+        // const {data} = await refetch()
+        //  console.log("data",data)
+        setAddPrincipal({name:"",image:"",featured:false})
+        //  setCategory(data.data)
+    setIsOpen(false)
+      }else{
+        alert("Some Fields are empty")
+      }
+    }catch(err){
+      console.log("Got error in submit principal",err)
+    }
+  }
   return (
     <>
+    <div className='flex justify-center'>
+    {loading && 
+    <Loading/>
+    }
+    </div>
     <TopNav/>
     <section className="container px-2 mx-auto py-2">
   <div className="sm:flex sm:items-center sm:justify-between">
@@ -157,16 +210,12 @@ leaveTo="transform opacity-0 scale-95"
 <Menu.Items className="absolute z-50 right-10 -top-16 mt-2 w-24 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
 <div className="px-1 py-1 ">
 <Menu.Item>
-{({ active }) => (
 <button
-className={`${
-active ? 'bg-violet-500 text-white' : 'text-gray-900'
-} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
->
-
-Edit
-</button>
-)}
+    onClick={()=>EditPrincipal(item._id)}
+    className={'hover:bg-black hover:text-white text-gray-900 group flex w-full items-center rounded-md px-2 py-2 text-sm'}
+  >
+    Edit
+  </button>
 </Menu.Item>
 <Menu.Item>
 {({ active }) => (
@@ -265,7 +314,7 @@ Delete
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Add New Principal
+                     {isEdit?"Update Principal":"Add New Principal"}
                   </Dialog.Title>
                   
 <form>
@@ -286,13 +335,21 @@ Delete
   </div>
 
                   <div className="mt-4">
+                  {!isEdit?(
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={SubmitModal}
                     >
-                      Create New
+                      Create New Principal
                     </button>
+                    ): (<button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border-2 text-white bg-green-500 px-4 py-2 text-sm font-medium  hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={()=>UpdateModal(addPrincipal.id)}
+                    >
+                      Update Principal
+                    </button>)}
                   </div>
 </form>
                 </Dialog.Panel>

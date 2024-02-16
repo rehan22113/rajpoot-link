@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { useGetIndustryQuery } from '../../Redux/Api/IndustryApi'
 import { useGetPrincipalQuery } from '../../Redux/Api/PrincipalApi'
 import { useGetCategoryQuery } from '../../Redux/Api/CategoryApi'
@@ -8,6 +8,18 @@ const Footer = () => {
   const {data:category,isFetching} = useGetCategoryQuery()
   const {data:industry} = useGetIndustryQuery()
   const {data:principal} = useGetPrincipalQuery()
+  const [filterCategory,setFilterCategory] = useState({data:[]})
+
+
+  const FilterParentCategory=()=>{
+    const filteredCategories = category?.data?.filter((item) =>item.parent ===null);
+    setFilterCategory({data:filteredCategories})
+  }
+
+  useEffect(()=>{
+    FilterParentCategory()
+  },[category])
+
   return (
  <footer className="bg-white dark:bg-gray-900">
   <div className="container p-6 px-6 mx-auto">
@@ -44,7 +56,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <div>
             <h3 className="text-gray-700 uppercase dark:text-white">Categories</h3>
-            {category?.data?.map((item)=>(
+            {filterCategory?.data?.map((item)=>(
             <Link key={item._id} to="/shop" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
             ))}
             

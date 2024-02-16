@@ -1,14 +1,13 @@
 import React, { useState,Fragment, useEffect } from 'react'
 import TopNav from '../../../Components/Admin/TopNav'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { useDeleteCategoryMutation, useGetCategoryQuery, usePostCategoryMutation } from '../../../Redux/Api/CategoryApi'
+import { useDeleteCategoryMutation, useGetCategoryQuery, useGetSingleCategoryMutation, usePostCategoryMutation, useUpdateCategoryMutation } from '../../../Redux/Api/CategoryApi'
 import Loading from '../../../Components/Loading'
 
 
 
-
-const renderCategories = (categories,deleteCategory, parentId = null) => { 
+const renderCategories = (categories,deleteCategory,EditCategory, parentId = null) => { 
 
   const filteredCategories = categories.filter(category => category.parent === parentId);
 
@@ -65,24 +64,22 @@ leaveTo="transform opacity-0 scale-95"
 <Menu.Items className="absolute z-50 right-28 -mt-20 w-24 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
 <div className="px-1 py-1 ">
 <Menu.Item>
-{({ active }) => (
+
   <button
-    className={`${
-      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+    onClick={()=>EditCategory(category._id)}
+    className={'hover:bg-black hover:text-white text-gray-900 group flex w-full items-center rounded-md px-2 py-2 text-sm'}
   >
    
     Edit
   </button>
-)}
 </Menu.Item>
 <Menu.Item>
-  <button
+  <Link to={`/category?id=${category._id}`}
     className={` group flex w-full items-center rounded-md px-2 py-2 text-sm`}
   >
     
     View
-  </button>
+  </Link>
 </Menu.Item>
 </div>
 
@@ -104,7 +101,7 @@ leaveTo="transform opacity-0 scale-95"
 </td>
               </tr>
             
-        {renderCategories(categories,deleteCategory,category._id)}
+        {renderCategories(categories,deleteCategory,EditCategory,category._id)}
               
         {/* <li key={category.id}>
            {category.name}
@@ -122,6 +119,7 @@ const AllCategory = () => {
   const Navigate = useNavigate()
   const {data,isFetching,isLoading,refetch} = useGetCategoryQuery()
   const [isOpen, setIsOpen] = useState(false)
+  const [isEdit,setIsEdit]= useState(false)
   const [loading,setLoading] = useState(false)
   const [category,setCategory] = useState([])
   const [addNewCategory,setAddNewCategory] = useState({
@@ -131,12 +129,26 @@ const AllCategory = () => {
     parent:""
   })
   const [AddNewPost,result] = usePostCategoryMutation()
+  const [GetCategory] = useGetSingleCategoryMutation()
   const [deleteCat] = useDeleteCategoryMutation()
+  const [UpdatePost] = useUpdateCategoryMutation()
 
   const deleteCategory=(id)=>{
     setLoading(true)
     deleteCat(id)
     refetch()
+  }
+  const EditCategory=async(id)=>{
+      setIsEdit(true)
+      const res = await GetCategory(id);
+      setAddNewCategory({
+        id:res.data.data._id,
+        name:res.data.data.name,
+        featured:res.data.data.featured,
+        image:"",
+        parent:res.data.data.parent
+      })
+      openModal()
   }
 
   useEffect(()=>{
@@ -145,7 +157,14 @@ const AllCategory = () => {
   },[data])
   
   function closeModal() {
+    setAddNewCategory({
+      name:"",
+    featured:false,
+    image:"",
+    parent:""
+    })
     setIsOpen(false)
+    
   }
   function openModal() {
     setIsOpen(true)
@@ -173,6 +192,33 @@ const AllCategory = () => {
         // const {data} = await refetch()
         //  console.log("data",data)
         setAddNewCategory({name:"",fImage:"",featured:false,parent:null})
+        //  setCategory(data.data)
+    setIsOpen(false)
+      }else{
+        alert("Some Fields are empty")
+      }
+    }catch(err){
+      console.log("Got error in submit indsutry",err)
+    }
+  }
+
+  const UpdateModal=async(id)=>{
+    try{
+      setLoading(true)
+      let ind = new FormData()
+      if(addNewCategory.name){
+        ind.append("name",addNewCategory.name)
+        if(addNewCategory.image){
+          ind.append("fImage",addNewCategory.image)
+        }
+        ind.append("featured",addNewCategory.featured)
+        if(addNewCategory.parent){
+          ind.append("parent",addNewCategory.parent)
+        }
+        UpdatePost({ind,id})
+        // const {data} = await refetch()
+        //  console.log("data",data)
+        setAddNewCategory({name:"",image:"",featured:false,parent:null})
         //  setCategory(data.data)
     setIsOpen(false)
       }else{
@@ -251,7 +297,7 @@ const AllCategory = () => {
            
             <tbody className=" divide-y divide-gray-700 bg-gray-900 overflow-scroll">
             
-             {renderCategories(category,deleteCategory)}            
+             {renderCategories(category,deleteCategory,EditCategory)}            
             </tbody>
           </table>
         </div>
@@ -291,21 +337,21 @@ const AllCategory = () => {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Add New Category
+                    {isEdit?"Update Category":"Add New Category"} 
                   </Dialog.Title>
                   
 <form>
   <div className="my-6">
     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name of Category</label>
-    <input type="text" onChange={(e)=>{setAddNewCategory({...addNewCategory,name:e.target.value})}} id="name" className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" placeholder="standard automation" required />
+    <input type="text" value={addNewCategory.name} onChange={(e)=>{setAddNewCategory({...addNewCategory,name:e.target.value})}} id="name" className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" placeholder="standard automation" required />
   </div>
   <div className="mb-6">
-    <label htmlFor="file" className="block mb-2 text-sm font-medium text-gray-900">Thumbnail Image</label>
+    <label htmlFor="file" className="block mb-2 text-sm font-medium text-gray-900">Thumbnail Image - {isEdit && "if not added then previous image will shown (optional)"}</label> 
     <input onChange={(e)=>{setAddNewCategory({...addNewCategory,image:e.target.files[0]})}} type="file" id="file" className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-100 focus:ring-blue-500 focus:border-blue-500" required />
   </div>
   <div className="my-6">
     <label htmlFor="parentCat" className="block mb-2 text-sm font-medium text-gray-900">Parent Category</label>
-    <select onChange={(e)=>{setAddNewCategory({...addNewCategory,parent:e.target.value})}} id="parentCat" className=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" required >
+    <select value={addNewCategory.parent} onChange={(e)=>{setAddNewCategory({...addNewCategory,parent:e.target.value})}} id="parentCat" className=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" required >
     <option value={null}>No Parent</option>
     {generateOptions(category)}    
       {/* {category.map((item)=>(
@@ -324,14 +370,9 @@ const AllCategory = () => {
       <option value={false}>No</option>
     </select>
   </div>
-  {/* <div className="flex items-start mb-6">
-    <div className="flex items-center h-5">
-      <input id="remember" type="checkbox" defaultValue className="w-4 h-4 border rounded  focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-    </div>
-    <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Active</label>
-  </div> */}
 
                   <div className="mt-4">
+                    {!isEdit?(
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -339,6 +380,13 @@ const AllCategory = () => {
                     >
                       Create New Category
                     </button>
+                    ): (<button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border-2 text-white bg-green-500 px-4 py-2 text-sm font-medium  hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={()=>UpdateModal(addNewCategory.id)}
+                    >
+                      Update Category
+                    </button>)}
                   </div>
 </form>
                 </Dialog.Panel>
@@ -347,8 +395,14 @@ const AllCategory = () => {
           </div>
         </Dialog>
       </Transition>
+
+
 </>
   )
 }
 
+
+
 export default AllCategory
+
+

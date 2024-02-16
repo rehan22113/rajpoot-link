@@ -6,6 +6,10 @@ const CategoryApi = MainApi.injectEndpoints({
             query:()=>'/category',
             providesTags: ['Category'],
         }),
+        getSingleCategory: build.mutation({
+            query:(id)=>`/category/${id}`,
+            providesTags: ['Category']
+        }),
         getCategoryByLimit: build.query({
             query:(limit)=>`/category?limit=${limit}`,
             providesTags: ['Category']
@@ -15,6 +19,14 @@ const CategoryApi = MainApi.injectEndpoints({
                 url:'/category',
                 method:'POST',
                 body:data
+            }),
+            invalidatesTags: ['Category']
+        }),
+        updateCategory: build.mutation({
+            query:({ind,id})=>({
+                url:`/category/${id}`,
+                method:'PATCH',
+                body:ind
             }),
             invalidatesTags: ['Category']
         }),
@@ -28,4 +40,4 @@ const CategoryApi = MainApi.injectEndpoints({
     })
 })
 
-export const {useGetCategoryQuery, usePostCategoryMutation, useGetCategoryByLimitQuery, useDeleteCategoryMutation} = CategoryApi
+export const {useGetCategoryQuery, useGetSingleCategoryMutation, usePostCategoryMutation, useUpdateCategoryMutation, useGetCategoryByLimitQuery, useDeleteCategoryMutation} = CategoryApi

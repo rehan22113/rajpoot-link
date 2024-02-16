@@ -30,7 +30,7 @@ const Categories = ({category}) => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {category.map((item)=>{
+        {category.data.map((item)=>{
           
          if(item.parent ==null)  
          { return (
