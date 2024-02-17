@@ -11,7 +11,7 @@ import './FP.css';
 
 // import required modules
 import { Navigation, Pagination } from 'swiper/modules';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function FeaturedProducts({post}) {
 
@@ -61,8 +61,15 @@ export default function FeaturedProducts({post}) {
             </div>
             <div className="px-2 py-3">
            <div className=" rounded-lg text-center">
-  <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">{item.category.name}</h3>
-  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{item.title}</h2>
+  <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">
+  {item.category.name}
+  </h3>
+  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
+  <Link to={`/product/${item._id}`}>
+  {item.title}
+  </Link>
+
+  </h2>
  
 </div>
 
