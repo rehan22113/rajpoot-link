@@ -57,20 +57,20 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-700 uppercase dark:text-white">Categories</h3>
             {filterCategory?.data?.map((item)=>(
-            <Link key={item._id} to="/shop" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
+            <Link key={item._id} to={`/category?id=${item._id}`} className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
             ))}
             
           </div>
           <div>
             <h3 className="text-gray-700 uppercase dark:text-white">Principals</h3>
             {principal?.data?.map((item)=>(
-            <Link key={item._id} to="/shop" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
+            <Link key={item._id} to={`/principal?id=${item._id}`} className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
             ))}
           </div>
           <div>
             <h3 className="text-gray-700 uppercase dark:text-white">Industries</h3>
             {industry?.data?.map((item)=>(
-            <Link key={item._id} to="/shop" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
+            <Link key={item._id} to={`/industry?id=${item._id}`} className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
             ))}
           </div>
           <div>
