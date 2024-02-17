@@ -6,6 +6,10 @@ const ClientApi = MainApi.injectEndpoints({
             query:()=>'/client',
             providesTags: ['Client']
         }),
+        getSingleClient: build.mutation({
+            query:(id)=>`/client/${id}`,
+            providesTags: ['Client']
+        }),
         getClientByLimit: build.query({
             query:(limit)=>`/client?limit=${limit}`,
             providesTags: ['Client']
@@ -16,16 +20,24 @@ const ClientApi = MainApi.injectEndpoints({
                 method:'POST',
                 body:data
             }),
-            invalidatesTags: ['Post','Category','Industry','Principal']
+            invalidatesTags: ['Client']
+        }),
+        updateClient: build.mutation({
+            query:({ind,id})=>({
+                url:`/client/${id}`,
+                method:'PATCH',
+                body:ind
+            }),
+            invalidatesTags: ['Client']
         }),
         deleteClient: build.mutation({
             query:(id)=>({
                 url:`/client/${id}`,
                 method:'DELETE'
             }),
-            invalidatesTags: ['Post','Category','Industry','Principal'] 
+            invalidatesTags: ['Client'] 
         }),
     })
 })
 
-export const {useGetClientQuery, useGetClientByLimitQuery,usePostClientMutation, useDeleteClientMutation} = ClientApi
+export const {useGetClientQuery, useGetSingleClientMutation, useUpdateClientMutation, useGetClientByLimitQuery,usePostClientMutation, useDeleteClientMutation} = ClientApi

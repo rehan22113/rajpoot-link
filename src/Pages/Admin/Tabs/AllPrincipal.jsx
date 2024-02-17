@@ -45,7 +45,7 @@ const AllPrincipal = () => {
     setLoading(false)
   },[data])
   function closeModal() {
-    setAddNewCategory({
+    setAddPrincipal({
       name:"",
     featured:false,
     image:""
