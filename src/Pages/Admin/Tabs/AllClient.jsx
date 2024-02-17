@@ -2,13 +2,20 @@ import React, { useState,Fragment, useEffect } from 'react'
 import TopNav from '../../../Components/Admin/TopNav'
 import { Link, useNavigate } from 'react-router-dom'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { useDeleteClientMutation, useGetClientQuery, usePostClientMutation } from '../../../Redux/Api/ClientApi'
+import { useDeleteClientMutation, useGetClientQuery, useGetSingleClientMutation, usePostClientMutation, useUpdateClientMutation } from '../../../Redux/Api/ClientApi'
+import Loading from '../../../Components/Loading'
 
 const AllClient = () => {
   const Navigate = useNavigate()
   const {data,isLoading,isFetching,refetch} = useGetClientQuery()
+  const [loading,setLoading] = useState(false)
+  const [isEdit,setIsEdit]= useState(false)
+
   const [AddNewPost,result] = usePostClientMutation()
+  const [GetClient] = useGetSingleClientMutation()
   const [deleteCat] = useDeleteClientMutation()
+  const [UpdatePost] = useUpdateClientMutation()
+
 
   const [isOpen, setIsOpen] = useState(false)
   const [addClient,setAddClient] = useState({
@@ -22,11 +29,31 @@ const AllClient = () => {
     refetch()
 
   }
+
+  const EditClient=async(id)=>{
+    setIsEdit(true)
+    const res = await GetClient(id);
+    setAddClient({
+      id:res.data.data._id,
+      name:res.data.data.name,
+      featured:res.data.data.featured,
+      image:"",
+    })
+    openModal()
+}
+
+
   useEffect(()=>{
     data?setClient(data.data):console.log("fetching",isFetching)
-  },[isFetching,isLoading])
+    setLoading(false)
+  },[data])
 
   function closeModal() {
+    setAddClient({
+      name:"",
+    featured:false,
+    image:""
+    })
     setIsOpen(false)
   }
   function openModal() {
@@ -52,8 +79,37 @@ const AllClient = () => {
       console.log("Got error in submit indsutry",err)
     }
   }
+  const UpdateModal=async(id)=>{
+    try{
+      setLoading(true)
+      let ind = new FormData()
+      if(addClient.name){
+        ind.append("name",addClient.name)
+        if(addClient.image){
+          ind.append("fImage",addClient.image)
+        }
+        ind.append("featured",addClient.featured)
+        
+        UpdatePost({ind,id})
+        // const {data} = await refetch()
+        //  console.log("data",data)
+        setAddClient({name:"",image:"",featured:false})
+        //  setCategory(data.data)
+    setIsOpen(false)
+      }else{
+        alert("Some Fields are empty")
+      }
+    }catch(err){
+      console.log("Got error in submit client",err)
+    }
+  }
   return (
     <>
+    <div className='flex justify-center'>
+    {loading && 
+    <Loading/>
+    }
+    </div>
     <TopNav/>
     <section className="container px-2 mx-auto py-2">
   <div className="sm:flex sm:items-center sm:justify-between">
@@ -158,6 +214,7 @@ leaveTo="transform opacity-0 scale-95"
 <Menu.Item>
 {({ active }) => (
   <button
+  onClick={()=>EditClient(item._id)}
     className={`${
       active ? 'bg-violet-500 text-white' : 'text-gray-900'
     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -284,13 +341,21 @@ leaveTo="transform opacity-0 scale-95"
   </div>
 
                   <div className="mt-4">
+                  {!isEdit?(
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={SubmitModal}
                     >
-                      Create New
+                      Create
                     </button>
+                    ): (<button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border-2 text-white bg-green-500 px-4 py-2 text-sm font-medium  hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={()=>UpdateModal(addClient.id)}
+                    >
+                      Update Client
+                    </button>)}
                   </div>
 </form>
                 </Dialog.Panel>

@@ -17,14 +17,14 @@ const ContactApi = MainApi.injectEndpoints({
                 method:'POST',
                 body:data
             }),
-            // invalidatesTags: ['Post','Category','Principal','Client']
+            invalidatesTags: ['Contract']
         }),
         deleteContact: build.mutation({
             query:(id)=>({
                 url:`/contact/${id}`,
                 method:'DELETE'
             }),
-            // invalidatesTags: ['Post','Category','Principal','Client']
+            invalidatesTags: ['Contract']
         }),
     })
 })

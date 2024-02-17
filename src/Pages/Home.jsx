@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import { useGetPrincipalByLimitQuery } from '../Redux/Api/PrincipalApi'
 import { useGetIndustryByLimitQuery } from '../Redux/Api/IndustryApi'
 import { useGetClientByLimitQuery } from '../Redux/Api/ClientApi'
+import Clients from '../Components/Clients'
 const Home = () => {
   const {data:CategoryByLimit,isFetching} = useGetCategoryByLimitQuery(8)
   const {data:category} = useGetCategoryQuery()
@@ -92,7 +93,7 @@ const Home = () => {
     </div>
   </div>
 </section>
-    <section className="bg-white">
+    <section className="bg-gray-200">
  
  <div className="container px-6 py-16 mx-auto text-center">
    <div className="max-w-lg mx-auto">
@@ -102,7 +103,8 @@ const Home = () => {
      </p> */}
      
    </div>
-   <div className="max-w-screen-xl mx-auto mt-10">
+   <Clients client={clientLimited} />
+   {/* <div className="max-w-screen-xl mx-auto mt-10">
      <div className="grid grid-cols-2 gap-6 md:grid-cols-6">
      {clientLimited.map((item)=>(
 
@@ -111,7 +113,7 @@ const Home = () => {
        </div>
      ))}
      </div>
-   </div>
+   </div> */}
  </div>
 </section>
     <Footer/>
