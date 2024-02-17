@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Partner = ({principal}) => {
   return (
@@ -18,7 +19,12 @@ const Partner = ({principal}) => {
       {principal.map((item)=>(
         <div key={item._id} className="flex items-center flex-col justify-center col-span-1 md:col-span-2 lg:col-span-1">
           <img src={`${item.image}`} className='md:w-52 rounded-xl h-40 object-fit' />
-          <h2 className='text-gray-200 py-2'>{item.name}</h2>
+          <h2 className='text-gray-200 py-2'>
+          <Link to={`/principal?id=${item._id}`}>
+          {item.name}
+  </Link>
+          
+          </h2>
         </div>
       ))}
         
