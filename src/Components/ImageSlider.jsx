@@ -32,7 +32,7 @@ export default function ImageSlider({slides}) {
       >
       {slides?.map((item)=>(
         <SwiperSlide>
-          <img src={item} className=" w-full min-h-[400px] max-h-[400px] object-fit object-center rounded" />
+          <img src={item} className=" w-full min-h-[400px] max-h-[400px] !object-contain object-center rounded" />
         </SwiperSlide>
       ))}
         
