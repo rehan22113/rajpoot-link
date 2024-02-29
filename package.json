@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://rajpoot-backend.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -20,6 +19,7 @@
     "draftjs-to-html": "^0.9.1",
     "flowbite": "^2.2.0",
     "lottie-react": "^2.4.0",
+    "photoswipe": "^5.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",

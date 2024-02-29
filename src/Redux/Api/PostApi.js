@@ -27,6 +27,20 @@ const PostApi = MainApi.injectEndpoints({
             query:()=>`/post`,
             providesTags: ['Post']
         }),
+        getPostByCategoryAndPrincipal: build.query({
+            query:({pId,cId})=>({
+                url:`/post/postByCategoryAndPrincipal/${pId}/${cId}`,
+                method:'GET',
+            }),
+            providesTags: ['Post']
+        }),
+        getPostByCategoryAndIndustry: build.query({
+            query:({iId,cId})=>({
+                url:`/post/postByCategoryAndIndustry/${iId}/${cId}`,
+                method:'GET',
+            }),
+            providesTags: ['Post']
+        }),
         getPostByCategory: build.query({
             query:(cat)=>({
                 url:`/post/category/${cat}`,
@@ -75,4 +89,4 @@ const PostApi = MainApi.injectEndpoints({
     })
 })
 
-export const {useGetAllPostQuery, useGetSinglePostQuery, useGetPostByLimitQuery, useNewPostMutation, useUpdatePostMutation, useGetPostByCategoryQuery, useGetFilteredPostMutation, useGetLimitedPostQuery, useGetPostByIndustryQuery, useGetPostByPrincipalQuery, useDeletePostMutation} = PostApi;
+export const {useGetAllPostQuery, useGetSinglePostQuery, useGetPostByCategoryAndPrincipalQuery, useGetPostByCategoryAndIndustryQuery, useGetPostByLimitQuery, useNewPostMutation, useUpdatePostMutation, useGetPostByCategoryQuery, useGetFilteredPostMutation, useGetLimitedPostQuery, useGetPostByIndustryQuery, useGetPostByPrincipalQuery, useDeletePostMutation} = PostApi;
