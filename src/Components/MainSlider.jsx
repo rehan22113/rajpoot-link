@@ -27,7 +27,7 @@ export default function MainSlider() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className='h-[30rem] !bg-contain bg-center' src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img className='h-[30rem] !bg-contain bg-center' src="https://lh3.google.com/u/0/d/1sXu7S_UbaNXiO1dQ45CcrTk83UpMjbWi=w2560-h1276-iv1" />
         </SwiperSlide>
         <SwiperSlide>
           <img className='h-[30rem] !bg-contain bg-center' src="https://swiperjs.com/demos/images/nature-2.jpg" />

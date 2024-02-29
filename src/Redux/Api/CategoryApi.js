@@ -6,6 +6,14 @@ const CategoryApi = MainApi.injectEndpoints({
             query:()=>'/category',
             providesTags: ['Category'],
         }),
+        getCategoryByPrincipal: build.query({
+            query:(principalId)=>`/post/principal/${principalId}/categories`,
+            providesTags: ['Category']
+        }),
+        getCategoryByIndustry: build.query({
+            query:(industryId)=>`/post/industry/${industryId}/categories`,
+            providesTags: ['Category']
+        }),
         getSingleCategory: build.mutation({
             query:(id)=>`/category/${id}`,
             providesTags: ['Category']
@@ -40,4 +48,4 @@ const CategoryApi = MainApi.injectEndpoints({
     })
 })
 
-export const {useGetCategoryQuery, useGetSingleCategoryMutation, usePostCategoryMutation, useUpdateCategoryMutation, useGetCategoryByLimitQuery, useDeleteCategoryMutation} = CategoryApi
+export const {useGetCategoryQuery, useGetCategoryByPrincipalQuery, useGetCategoryByIndustryQuery, useGetSingleCategoryMutation, usePostCategoryMutation, useUpdateCategoryMutation, useGetCategoryByLimitQuery, useDeleteCategoryMutation} = CategoryApi

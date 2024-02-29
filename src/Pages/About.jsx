@@ -16,7 +16,7 @@ Cement sector is our largest client with over 300 installations across the secto
 
     </div>
     <div className="flex justify-center mt-10" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="1500" data-aos-easing="ease-in">
-      <img className="object-cover w-full h-96 rounded-xl" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" />
+      <img className=" w-full h-96 rounded-xl" src="/about_hero.jpg" />
     </div>
   </div>
 </section>
@@ -36,7 +36,7 @@ Incorporated in 2011, we started as trading company mostly dealing with general 
       </div>
     </div>
     <div className="w-full h-64 lg:w-1/2 lg:h-auto relative z-20">
-      <div className="w-full h-full bg-cover" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1508394522741-82ac9c15ba69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=748&q=80)'}} data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="1000" data-aos-easing="ease-out">
+      <div className="w-full h-full bg-cover" style={{backgroundImage: 'url(/about1.jpg)'}} data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="1000" data-aos-easing="ease-out">
         <div className="w-full h-full bg-black opacity-25" />
       </div>
     </div>

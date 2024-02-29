@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useGetSinglePostQuery } from '../Redux/Api/PostApi'
 import ImageSlider from '../Components/ImageSlider'
 
+
 const SingleProduct = () => {
   const {id} = useParams()
   const {data,isFetching} = useGetSinglePostQuery(id)

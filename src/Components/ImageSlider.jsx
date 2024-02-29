@@ -10,6 +10,16 @@ import 'swiper/css/thumbs';
 
 import './Imageslider.css';
 
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import 'photoswipe/style.css';
+
+const lightbox = new PhotoSwipeLightbox({
+  gallery: '#my-gallery',
+  children: '.in-slide',
+  pswpModule: () => import('photoswipe')
+});
+lightbox.init();
+
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
@@ -29,13 +39,24 @@ export default function ImageSlider({slides}) {
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
+        id='my-gallery'
       >
       {slides?.map((item)=>(
-        <SwiperSlide>
+        <SwiperSlide 
+        >
+        <a
+        data-pswp-src={item}
+        data-pswp-width="1669" 
+    data-pswp-height="2500" 
+    target="_blank"
+        className='in-slide cursor-pointer'
+        >
+
           <img src={item} className=" w-full min-h-[400px] max-h-[400px] !object-contain object-center rounded" />
+        </a>
         </SwiperSlide>
       ))}
-        
+         
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}

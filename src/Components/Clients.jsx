@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Navigation } from 'swiper/modules'
+import { Autoplay,Navigation } from 'swiper/modules'
 import { Swiper,SwiperSlide } from 'swiper/react'
+
+
 
 const Clients = ({client}) => {
  
@@ -17,6 +19,11 @@ const Clients = ({client}) => {
         pagination={{
           clickable: true,
         }}
+        // centeredSlides={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         breakpoints={{
             400: {
                 slidesPerView: 2,
@@ -27,7 +34,7 @@ const Clients = ({client}) => {
                 spaceBetweenSlides: 20
             }
             }}
-        modules={[Navigation]}
+        modules={[Autoplay,Navigation]}
         className="mySwiper"
       >
         {client.map((item)=>(

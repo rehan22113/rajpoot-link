@@ -23,6 +23,8 @@ import ScrollToTop from './Components/ScrollToTop'
 import About from './Pages/About'
 import AllClient from './Pages/Admin/Tabs/AllClient'
 import EditPost from './Pages/Admin/Tabs/EditPost'
+import PrincipalAndCategory from './Pages/PrincipalAndCategory'
+import IndustryAndCategory from './Pages/IndustryAndCategory'
 
 const App = () => {
   return (
@@ -36,6 +38,8 @@ const App = () => {
       <Route path='/industry' element={<Industry/>} />
       <Route path='/category/' element={<Category/>} />
       <Route path='/principal' element={<Principal/>} />
+      <Route path='/principal/category' element={<PrincipalAndCategory/>} />
+      <Route path='/industry/category' element={<IndustryAndCategory/>} />
       <Route path='/about' element={<About/>} />
 
     <Route element={<AdminProtectedRoute/>}>
