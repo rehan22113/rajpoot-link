@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -18,13 +18,16 @@ const lightbox = new PhotoSwipeLightbox({
   children: '.in-slide',
   pswpModule: () => import('photoswipe')
 });
-lightbox.init();
 
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 export default function ImageSlider({slides}) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  useEffect(()=>{
+lightbox.init();
+  },[])
 
   return (
     <>
