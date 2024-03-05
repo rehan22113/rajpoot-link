@@ -50,19 +50,19 @@ const Home = () => {
    <header className="bg-[#162436]">
    <div style={{background:"url('https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto,w_1800/v1706797510/Background_2toneBlue-home')"}} className=' bg-contain bg-center'>
 
-  <div className="container px-6 py-4 mx-auto">
+  <div className="container px-6 mx-auto">
     <div className="items-center lg:flex">
-      <div className="w-full lg:w-1/2">
+      <div className="w-full py-6 lg:w-1/2">
         <div className="lg:max-w-lg gap-2 flex flex-col">
           <h1 className="text-3xl font-semibold leading-loose text-gray-100 lg:text-5xl">Quality Partner for <span className="text-[#155984] font-semibold">Quality Deliverables </span></h1>
           <p className="mt-4 text-gray-100">RAJPOOT LINKS PRIVATE LIMITED is working with cement, steel, mining and education & research sector of Pakistan for last 12 years.</p>
           <div className='py-8'>
 
-          <Link to="/shop" className="w-full px-5 py-3 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#155984] lg:w-auto hover:bg-[#155984] focus:outline-none focus:bg-[#155984]">Explore Now</Link>
+          <Link to="/about" className="w-full px-5 py-3 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#155984] lg:w-auto hover:bg-[#155984] focus:outline-none focus:bg-[#155984]">Explore More</Link>
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+      <div className="flex items-center justify-center w-full -mx-6 lg:mt-0 lg:w-[55%]">
         {/* <div className='absolute w-1/2 h-full top-0 left-0 bg-[#155984]'></div> */}
         <MainSlider/>
         {/* <img className="w-full h-full rounded-lg lg:max-w-xl" src="/hero.jpeg" alt="Catalogue-pana.svg" /> */}
@@ -75,11 +75,11 @@ const Home = () => {
 
     <Categories category={filterCategory}/>
     {/* <MainSlider/> */}
-    <Products post={limitedPost} />
     <Partner principal={principalLimited}/>
+    <Products post={limitedPost} />
     
     {/* About us */}
-   <section className=" body-font">
+   {/* <section className=" body-font">
   <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
     <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
       <img className="object-cover object-center rounded" alt="hero" src="/hero.jpeg" />
@@ -94,7 +94,7 @@ const Home = () => {
       </div>
     </div>
   </div>
-</section>
+</section> */}
     <section className="bg-gray-200">
  
  <div className="container px-6 py-16 mx-auto text-center">

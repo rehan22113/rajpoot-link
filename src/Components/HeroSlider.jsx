@@ -10,14 +10,13 @@ import 'swiper/css/pagination';
 
 // import './MainSlider.css';
 
-// import required modules
+// import required modules 
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 
 export default function MainSlider() {
   return (
     <>
       <Swiper
-        spaceBetween={30}
         effect={'fade'}
         centeredSlides={true}
         autoplay={{
@@ -32,28 +31,28 @@ export default function MainSlider() {
         className="mySwiper"
       >
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/1.jpg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/1.jpg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/2.jpg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/2.jpg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/3.jpg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/3.jpg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/4.jpg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/4.jpg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/5.jpeg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/5.jpeg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/6.jpeg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/6.jpeg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/7.jpg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/7.jpg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
         <SwiperSlide>
-        <img className="w-full h-full rounded-lg" src="/slider/8.jpg" alt="Catalogue-pana.svg" />
+        <img className=" !h-[450px]" src="/slider/8.jpg" alt="Catalogue-pana.svg" />
         </SwiperSlide>
       </Swiper>
     </>
