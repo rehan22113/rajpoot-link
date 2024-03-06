@@ -49,13 +49,13 @@ lightbox.init();
         >
         <a
         data-pswp-src={item}
-        data-pswp-width="1669" 
-    data-pswp-height="2500" 
+        data-pswp-width="2069" 
+    data-pswp-height="1469" 
+    data-pswp-objectFit="contain"
     target="_blank"
         className='in-slide cursor-pointer'
         >
-
-          <img src={item} className=" w-full min-h-[400px] max-h-[400px] !object-contain object-center rounded" />
+          <img src={item} className="w-full min-h-[400px] max-h-[400px] !object-contain object-center rounded" />
         </a>
         </SwiperSlide>
       ))}
