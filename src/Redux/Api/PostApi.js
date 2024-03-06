@@ -20,7 +20,7 @@ const PostApi = MainApi.injectEndpoints({
 
         }),
         getPostByLimit: build.query({
-            query:(limit)=>`/post?limit=${limit}`,
+            query:(limit)=>`/post/limited?limit=${limit}`,
             providesTags: ['Post']
         }),
         getPost: build.query({
