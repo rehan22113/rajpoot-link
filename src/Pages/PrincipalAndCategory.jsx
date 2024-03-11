@@ -31,13 +31,13 @@ const PrincipalAndCategory = () => {
             <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> {posts[0]?`Products By ${posts[0].category[0].name}`:"No Post has Found with this Category"} </h1>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="">
              
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
+              <div className="">
                 {/* Replace with your content */}
-                <div className={`grid gap-2 mt-6 grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 md:grid-cols-1'}`}>
+                <div className={`grid gap-2 mt-6 grid-cols-2 xl:grid-cols-5 md:grid-cols-1'}`}>
 
                 {posts?.map((item)=>(
                   <Fragment key={item._id}>

@@ -29,13 +29,13 @@ const Industry = () => {
     <div className="z-10 flex items-baseline justify-between pt-10 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> {posts[0]?`Category By ${industryName}`:"No Category has Found with this Industry"} </h1>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="">
              
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
+              <div className="">
                 {/* Replace with your content */}
-                <div className={`grid gap-2 mt-6 grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 md:grid-cols-1'}`}>
+                <div className={`grid gap-2 mt-6 grid-cols-2 xl:grid-cols-5 md:grid-cols-1'}`}>
 
                 {posts?.map((item)=>(
                   <Fragment key={item._id}>
