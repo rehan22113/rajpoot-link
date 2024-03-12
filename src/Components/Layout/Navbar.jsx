@@ -53,10 +53,10 @@ const Navbar = () => {
     </Link>
     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
       <Link to="/#" className="mr-5 hover:text-gray-900 cursor-pointer">Home</Link>
-      <Link to="/#" className="mr-1 hover:text-gray-900 cursor-pointer">
-      <DropDownMenu name={"Principal"} data={principal}/> </Link>
-      <Link to="/#" className="mr-1 hover:text-gray-900 cursor-pointer"><DropDownMenu name={"Category"} data={filterCategory}/></Link>
-      <Link to="/#" className="mr-1 hover:text-gray-900 cursor-pointer"><DropDownMenu name={"Industry"} data={industry}/></Link>
+      <div className="mr-1 hover:text-gray-900 cursor-pointer">
+      <DropDownMenu name={"Principal"} data={principal}/> </div>
+      <div className="mr-1 hover:text-gray-900 cursor-pointer"><DropDownMenu name={"Category"} data={filterCategory}/></div>
+      <div className="mr-1 hover:text-gray-900 cursor-pointer"><DropDownMenu name={"Industry"} data={industry}/></div>
       <Link to="/about" className="mr-5 hover:text-gray-900 cursor-pointer">About</Link>
       {/* <Link to="#" className="mr-5 hover:text-gray-900 cursor-pointer"></Link> */}
     </nav>

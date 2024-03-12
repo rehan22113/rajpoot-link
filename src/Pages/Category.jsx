@@ -33,7 +33,7 @@ if(category){
     <Navbar/>
     <section aria-labelledby="products-heading" className="pt-6 px-10 pb-24">
     <div className="z-10 flex items-baseline justify-between pt-10 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> { category?.msg=="post"?`Products By ${posts && posts[0]?.category[0]?.name}`:category?.msg=="category"?`Sub-Category of ${catName}`:"No Post has Found with this Category"} </h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> { category?.msg=="post" && posts?.length>0?`Products By ${posts && posts[0]?.category[0]?.name}`:category?.msg=="category"?`Sub-Category of ${catName}`:"No Post has Found with this Category"} </h1>
             </div>
 
             <div className="">
@@ -43,7 +43,7 @@ if(category){
               <div className="">
                 {/* Replace with your content */}
                 <div className={`grid gap-2 mt-6 grid-cols-2 xl:grid-cols-5 md:grid-cols-1'}`}>
-                {category.msg=="post"?(
+                {category?.msg=="post"?(
                 posts?.map((item)=>(
                         <Fragment key={item._id}>
                           <BoxProduct item={item}/>

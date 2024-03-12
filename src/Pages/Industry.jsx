@@ -1,8 +1,8 @@
 import React, { useState,useEffect,Fragment } from 'react'
 import Navbar from '../Components/Layout/Navbar'
 import Footer from '../Components/Layout/Footer'
-import BoxProduct from '../Components/ShopProduct/BoxProduct'
-import { useGetPostByIndustryQuery } from '../Redux/Api/PostApi'
+// import BoxProduct from '../Components/ShopProduct/BoxProduct'
+// import { useGetPostByIndustryQuery } from '../Redux/Api/PostApi'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { useGetCategoryByIndustryQuery } from '../Redux/Api/CategoryApi'
 import Loading from '../Components/Loading'
@@ -44,7 +44,7 @@ const Industry = () => {
             <div className="px-6 max-w-xl">
               <h2 className="text-2xl text-white font-semibold">{item.name}</h2>
               <p className="mt-2 text-gray-200">{category.length} Products</p>
-              <Link to={`/industry/category?iId=${id}&cId=${item._id}`} className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
+              <Link to={`/industry/category?iId=${id}&cId=${item._id}/?pName=${industryName}&cName=${item.name}`} className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
                 <span>Explore Now</span>
                 <svg className="h-5 w-5 mx-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </Link>
