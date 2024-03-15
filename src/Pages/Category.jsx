@@ -58,7 +58,7 @@ if(category){
           <div className="bg-gray-900 bg-opacity-70 flex items-end pb-10 h-full">
             <div className="px-6 max-w-xl">
               <h2 className="text-2xl text-white font-semibold">{item.name}</h2>
-              <p className="mt-2 text-gray-200">{posts.length} Products</p>
+              {/* <p className="mt-2 text-gray-200">{posts.length} Products</p> */}
               <Link to={`/category?id=${item._id}&name=${item.name}`} className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
                 <span>Explore Now</span>
                 <svg className="h-5 w-5 mx-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
