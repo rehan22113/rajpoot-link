@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Navigation } from 'swiper/modules'
+import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper,SwiperSlide } from 'swiper/react'
 const Partner = ({principal}) => {
   return (
@@ -24,6 +24,10 @@ const Partner = ({principal}) => {
         pagination={{
           clickable: true,
         }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         breakpoints={{
             400: {
                 slidesPerView: 2,
@@ -34,7 +38,7 @@ const Partner = ({principal}) => {
                 spaceBetweenSlides: 20
             }
             }}
-        modules={[Navigation]}
+        modules={[Autoplay,Navigation]}
         className="mySwiper"
       >
         {principal.map((item)=>(
@@ -54,17 +58,7 @@ const Partner = ({principal}) => {
         )
         )}
         </Swiper>
-      {/* {principal.map((item)=>(
-        <div key={item._id} className="flex items-center flex-col justify-center col-span-1 md:col-span-2 lg:col-span-1">
-          <img src={`${item.image}`} className='md:w-52 rounded-xl h-40 object-fit' />
-          <h2 className='text-gray-200 py-2'>
-          <Link to={`/principal?id=${item._id}`}>
-          {item.name}
-  </Link>
-          
-          </h2>
-        </div>
-      ))} */}
+    
         
       </div>
     </div>

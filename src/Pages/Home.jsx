@@ -15,13 +15,13 @@ import { useGetClientByLimitQuery } from '../Redux/Api/ClientApi'
 import Clients from '../Components/Clients'
 import MainSlider from '../Components/HeroSlider'
 const Home = () => {
-  const {data:CategoryByLimit,isFetching} = useGetCategoryByLimitQuery(8)
+  const {data:CategoryByLimit,isFetching} = useGetCategoryByLimitQuery(20)
   const {data:category} = useGetCategoryQuery()
-  const {data:PrincipalByLimit,isFetching:fetchPrincipal} = useGetPrincipalByLimitQuery(6)
+  const {data:PrincipalByLimit,isFetching:fetchPrincipal} = useGetPrincipalByLimitQuery(20)
   const {data:IndustryByLimit,isFetching:fetchIndustry} = useGetIndustryByLimitQuery(6)
-  const {data:ClientByLimit,isFetching:fetchClient} = useGetClientByLimitQuery(8)
+  const {data:ClientByLimit,isFetching:fetchClient} = useGetClientByLimitQuery(20)
   // const {data,error,isLoading} = useGetTestQuery()
-  const {data:LimitedPost,isFetching:fetchPost} = useGetPostByLimitQuery(8)
+  const {data:LimitedPost,isFetching:fetchPost} = useGetPostByLimitQuery(30)
   const [categoryLimited,setCategoryLimited] = useState([])
   const [limitedPost,setLimitedPost] = useState([])
   const [principalLimited,setPrincipalLimited] = useState([])
