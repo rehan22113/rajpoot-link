@@ -10,7 +10,7 @@ import 'swiper/css/navigation';
 import './FP.css';
 
 // import required modules
-import { Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function FeaturedProducts({post}) {
@@ -36,6 +36,10 @@ export default function FeaturedProducts({post}) {
         pagination={{
           clickable: true,
         }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         breakpoints={{
             400: {
                 slidesPerView: 2,
@@ -46,7 +50,7 @@ export default function FeaturedProducts({post}) {
                 spaceBetweenSlides: 40
             }
             }}
-        modules={[Navigation]}
+        modules={[Autoplay,Navigation]}
         className="mySwiper"
       >
       {
