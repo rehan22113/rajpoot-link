@@ -21,7 +21,7 @@ const Footer = () => {
   },[category])
 
   return (
- <footer className="bg-white dark:bg-gray-900">
+ <footer className="bg-gray-900">
   <div className="container p-6 px-6 mx-auto">
     <div className="lg:flex">
       <div className="w-full -mx-6 lg:w-2/5">
@@ -29,7 +29,7 @@ const Footer = () => {
           <Link to="/#">
             <img className="w-auto h-32" src="/logo_rajpoot.png" alt={"logo"} />
           </Link>
-          {/* <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">Join 31,000+ other and never miss out on new tips, tutorials, and more.</p> */}
+          {/* <p className="max-w-sm mt-2 text-gray-500 text-gray-400">Join 31,000+ other and never miss out on new tips, tutorials, and more.</p> */}
           <div className="flex mt-6 -mx-2">
             
             <Link to="https://www.facebook.com/profile.php?id=100063885562239&mibextid=ZbWKwL" target='_blank' className="mx-2 transition-colors duration-300 text-gray-300 hover:text-blue-400" aria-label="Facebook">
@@ -49,35 +49,35 @@ const Footer = () => {
       <div className="mt-6 lg:mt-0 lg:flex-1">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <div>
-            <h3 className="text-gray-700 uppercase dark:text-white">Categories</h3>
+            <h3 className=" uppercase text-white">Categories</h3>
             {filterCategory?.data?.map((item)=>(
-            <Link key={item._id} to={`/category?id=${item._id}`} className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
+            <Link key={item._id} to={`/category?id=${item._id}`} className="block mt-2 text-sm text-gray-400 hover:underline">{item.name}</Link>
             ))}
             
           </div>
           <div>
-            <h3 className="text-gray-700 uppercase dark:text-white">Principals</h3>
+            <h3 className=" uppercasetext-white">Principals</h3>
             {principal?.data?.map((item)=>(
-            <Link key={item._id} to={`/principal?id=${item._id}`} className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
+            <Link key={item._id} to={`/principal?id=${item._id}`} className="block mt-2 text-sm text-gray-400 hover:underline">{item.name}</Link>
             ))}
           </div>
           <div>
-            <h3 className="text-gray-700 uppercase dark:text-white">Industries</h3>
+            <h3 className="uppercase text-white">Industries</h3>
             {industry?.data?.map((item)=>(
-            <Link key={item._id} to={`/industry?id=${item._id}`} className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">{item.name}</Link>
+            <Link key={item._id} to={`/industry?id=${item._id}`} className="block mt-2 text-sm text-gray-400 hover:underline">{item.name}</Link>
             ))}
           </div>
           <div>
-            <h3 className="text-gray-700 uppercase dark:text-white">Contact</h3>
-            <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">(+92) 51 512 4820 - 21</span>
-            <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"> info@rajpootlinks.com</span>
+            <h3 className=" uppercase text-white">Contact</h3>
+            <span className="block mt-2 text-sm text-gray-400 hover:underline">(+92) 51 512 4820 - 21</span>
+            <span className="block mt-2 text-sm text-gray-400 hover:underline"> info@rajpootlinks.com</span>
           </div>
         </div>
       </div>
     </div>
-    <hr className="h-px my-6 bg-gray-200 border-none dark:bg-gray-700" />
+    <hr className="h-px my-6 border-none bg-gray-700" />
     <div>
-      <p className="text-center text-gray-500 dark:text-gray-400">© RajpootLink  2024 - All rights reserved</p>
+      <p className="text-center text-gray-400">© RajpootLink  2024 - All rights reserved</p>
     </div>
   </div>
 </footer>

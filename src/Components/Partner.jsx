@@ -6,12 +6,12 @@ import { Swiper,SwiperSlide } from 'swiper/react'
 const Partner = ({principal}) => {
   return (
     <>
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-gray-900">
  
   <div className="container px-6 py-16 mx-auto text-center">
     <div className="max-w-lg mx-auto">
-      <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Principals</h1>
-      {/* <p className="mt-6 text-gray-500 dark:text-gray-300">
+      <h1 className="text-3xl font-semibold text-white lg:text-4xl">Principals</h1>
+      {/* <p className="mt-6 text-gray-500 text-gray-300">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero similique obcaecati illum mollitia.
       </p> */}
       
