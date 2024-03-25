@@ -6,6 +6,7 @@ import BoxProduct from '../Components/ShopProduct/BoxProduct'
 import { useGetPostByCategoryAndIndustryQuery } from '../Redux/Api/PostApi'
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom'
 import Loading from '../Components/Loading'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 
 const IndustryAndCategory = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const IndustryAndCategory = () => {
     <div className='bg-white'>
     {loading && <Loading/>}
     <Navbar/>
+    <MobileNavbar/>
     <section aria-labelledby="products-heading" className="pt-6 px-10 pb-24">
     <div className="z-10 flex items-baseline justify-between pt-10 pb-6 border-b border-gray-200">
     <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> { category?.msg=="post" && posts?.length>0?`Explore ${posts && posts[0]?.category[0]?.name} products`:category?.msg=="category"?` Explore ${cName} Products`:"No Post has Found with this Category"} </h1>

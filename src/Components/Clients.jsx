@@ -14,8 +14,8 @@ const Clients = ({client}) => {
       
       <div className="grid mt-8">
       <Swiper
-        slidesPerView={7}
-        spaceBetween={20}
+        slidesPerView={2}
+        spaceBetween={10}
         pagination={{
           clickable: true,
         }}

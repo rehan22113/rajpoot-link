@@ -51,7 +51,7 @@ const Navbar = () => {
   </div>
 </header>
 
-   <header className="text-gray-600 body-font">
+   <header className="text-gray-600 md:block hidden body-font">
   <div className="container mx-auto flex flex-wrap p-1 px-6 shadow flex-col md:flex-row items-center">
     <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-0 md:mb-0">
       <img src='/logo_rajpoot.png' className='object-contain w-auto h-24' alt='logo' />

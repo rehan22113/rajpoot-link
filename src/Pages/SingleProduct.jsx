@@ -4,6 +4,7 @@ import Footer from '../Components/Layout/Footer'
 import { useParams } from 'react-router-dom'
 import { useGetSinglePostQuery } from '../Redux/Api/PostApi'
 import ImageSlider from '../Components/ImageSlider'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 
 
 const SingleProduct = () => {
@@ -18,6 +19,7 @@ const SingleProduct = () => {
   return (
     <>
     <Navbar/>
+    <MobileNavbar/>
    <section className="overflow-hidden">
   <div className="container px-5 py-6 mx-auto">
     <div className="container px-2 mx-auto flex flex-wrap items-start">

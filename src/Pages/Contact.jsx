@@ -3,6 +3,7 @@ import Navbar from '../Components/Layout/Navbar'
 import Footer from '../Components/Layout/Footer'
 import { usePostContactMutation } from '../Redux/Api/ContactApi'
 import { Link } from 'react-router-dom'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 
 const Contact = () => {
   const [SubmitContact,result] = usePostContactMutation()
@@ -27,7 +28,7 @@ const Contact = () => {
   return (
     <>
   <Navbar/>
-
+<MobileNavbar/>
   <div className='bg-white 2xl:py-2'>
   <div className="my-4 h-96 bg-gray-300">
   <iframe width="100%" height="100%" style={{filter: 'grayscale(0.1) contrast(1.2) opacity(1)'}} frameBorder={0} marginHeight={0} marginWidth={0} title="map" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3323.1791893828818!2d73.03515497569722!3d33.600654873330434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzPCsDM2JzAyLjQiTiA3M8KwMDInMTUuOCJF!5e0!3m2!1sen!2s!4v1708188479244!5m2!1sen!2s" />
