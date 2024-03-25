@@ -14,6 +14,7 @@ import { useGetIndustryByLimitQuery } from '../Redux/Api/IndustryApi'
 import { useGetClientByLimitQuery } from '../Redux/Api/ClientApi'
 import Clients from '../Components/Clients'
 import MainSlider from '../Components/HeroSlider'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 const Home = () => {
   const {data:CategoryByLimit,isFetching} = useGetCategoryByLimitQuery(20)
   const {data:category} = useGetCategoryQuery()
@@ -47,6 +48,7 @@ const Home = () => {
   return (
     <div>
     <Navbar/>
+    <MobileNavbar/>
    <header className="bg-[#162436]">
    <div style={{background:"url('https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto,w_1800/v1706797510/Background_2toneBlue-home')"}} className=' bg-contain bg-center'>
 
@@ -62,7 +64,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center w-full -mx-6 lg:mt-0 lg:w-[55%]">
+      <div className="flex items-center justify-center w-full lg:-mx-6 lg:mt-0 lg:w-[55%]">
         {/* <div className='absolute w-1/2 h-full top-0 left-0 bg-[#155984]'></div> */}
         <MainSlider/>
         {/* <img className="w-full h-full rounded-lg lg:max-w-xl" src="/hero.jpeg" alt="Catalogue-pana.svg" /> */}

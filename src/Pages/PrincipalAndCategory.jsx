@@ -6,6 +6,7 @@ import BoxProduct from '../Components/ShopProduct/BoxProduct'
 import { useGetPostByCategoryAndPrincipalQuery } from '../Redux/Api/PostApi'
 import { Link, useLocation} from 'react-router-dom'
 import Loading from '../Components/Loading'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 
 const PrincipalAndCategory = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const PrincipalAndCategory = () => {
     <div className='bg-white'>
     {loading && <Loading/>}
     <Navbar/>
+    <MobileNavbar/>
     <section aria-labelledby="products-heading" className="pt-6 px-10 pb-24">
     <div className="z-10 flex items-baseline justify-between pt-10 pb-6 border-b border-gray-200">
             {/* <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> {posts[0]?`Products By ${posts[0].category[0].name}`:"No Post has Found with this Category"} </h1> */}

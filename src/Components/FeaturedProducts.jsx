@@ -31,8 +31,8 @@ export default function FeaturedProducts({post}) {
     
        
       <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
+        slidesPerView={2}
+        spaceBetween={10}
         pagination={{
           clickable: true,
         }}

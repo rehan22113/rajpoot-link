@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper,SwiperSlide } from 'swiper/react'
 const Partner = ({principal}) => {
@@ -19,8 +18,8 @@ const Partner = ({principal}) => {
     <div className="container mx-auto px-2">
       <div className="grid mt-8">
       <Swiper
-        slidesPerView={6}
-        spaceBetween={20}
+        slidesPerView={1}
+        spaceBetween={40}
         pagination={{
           clickable: true,
         }}
@@ -45,7 +44,7 @@ const Partner = ({principal}) => {
 
           <SwiperSlide key={item._id}>
           <div key={item._id} className="flex items-center flex-col justify-center">
-          <img src={`${item.image}`} className=' rounded-xl min-w-[190px] max-w-[200px] !h-40 !object-fill' />
+          <img src={`${item.image}`} className=' rounded-xl min-w-[190px] max-w-[200px] !h-40 !object-contain' />
           <h2 className='text-gray-200 py-2'>
           <Link to={`/principal?id=${item._id}`}>
           {item.name}

@@ -12,8 +12,8 @@ const Categories = ({category}) => {
       
       <div className="grid mt-8">
       <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
+        slidesPerView={2}
+        spaceBetween={10}
         pagination={{
           clickable: true,
         }}
@@ -21,6 +21,7 @@ const Categories = ({category}) => {
           delay: 3000,
           disableOnInteraction: false,
         }}
+        Navigation={true}
         breakpoints={{
             400: {
                 slidesPerView: 2,

@@ -5,6 +5,7 @@ import { useGetCategoryQuery } from '../Redux/Api/CategoryApi'
 import BoxProduct from '../Components/ShopProduct/BoxProduct'
 import { useGetPostByCategoryQuery } from '../Redux/Api/PostApi'
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 
 const Category = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ if(category){
     
     <div className='bg-white'>
     <Navbar/>
+    <MobileNavbar/>
     <section aria-labelledby="products-heading" className="pt-6 px-10 pb-24">
     <div className="z-10 flex items-baseline justify-between pt-10 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> { category?.msg=="post" && posts?.length>0?`Products By ${posts && posts[0]?.category[0]?.name}`:category?.msg=="category"?`Sub-Category of ${catName}`:"No Post has Found with this Category"} </h1>

@@ -6,6 +6,7 @@ import Footer from '../Components/Layout/Footer'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { useGetCategoryByIndustryQuery } from '../Redux/Api/CategoryApi'
 import Loading from '../Components/Loading'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 
 const Industry = () => {
   const location = useLocation();
@@ -25,13 +26,13 @@ const Industry = () => {
     <div className='bg-white'>
     {loading && <Loading/>}
     <Navbar/>
+    <MobileNavbar/>
     <section aria-labelledby="products-heading" className="pt-6 px-10 pb-24">
     <div className="z-10 flex items-baseline justify-between pt-10 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> {posts[0]?`Explore ${industryName} related Categories`:"No Category has Found with this Industry"} </h1>
             </div>
             <div className="">
              
-
               {/* Product grid */}
               <div className="">
                 {/* Replace with your content */}

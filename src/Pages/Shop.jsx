@@ -12,6 +12,7 @@ import { useGetPrincipalQuery } from '../Redux/Api/PrincipalApi'
 import BoxProduct from '../Components/ShopProduct/BoxProduct'
 import ListProduct from '../Components/ShopProduct/ListProduct'
 import { updatefilter } from '../Redux/slice/productSlice'
+import MobileNavbar from '../Components/Layout/MobileNavbar'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -127,6 +128,7 @@ export default function Shop() {
         Add New Category
       </button> */}
       <Navbar />
+      <MobileNavbar/>
       </div>
       <div>
         {/* Mobile filter dialog */}
