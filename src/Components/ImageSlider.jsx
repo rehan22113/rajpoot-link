@@ -49,8 +49,8 @@ lightbox.init();
         >
         <a
         data-pswp-src={item}
-        data-pswp-width="2069" 
-    data-pswp-height="2069" 
+        data-pswp-width="1200" 
+    data-pswp-height="600" 
     data-pswp-objectFit="contain"
     target="_blank"
         className='in-slide cursor-pointer'
