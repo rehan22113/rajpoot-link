@@ -62,7 +62,7 @@ We have our collaborations around the globe specializing in the field of samplin
       <p className="mt-4 text-sm text-black lg:text-lg">We are also serving our customers outside Pakistan including central Asian & middle eastern countries. </p>
       <p className="mt-4 text-sm text-black lg:text-lg">Our UAE based sister concern company MATIMCO Solutions LLC enables us to serve our customers with much more flexible possibilities.</p>
       <div className="flex justify-center">
-      <Link href="/contact" className="block px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-[#155984] rounded-md hover:bg-gray-700">Contact Now</Link>
+      <Link href="/contact" className="block mt-3 px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-[#155984] rounded-md hover:bg-gray-700">Contact Now</Link>
       </div>
     </div>
   </div>
