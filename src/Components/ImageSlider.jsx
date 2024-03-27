@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
+// import { getImageDimensions} from 'lightning-image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -24,9 +24,49 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 export default function ImageSlider({slides}) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [images,setImage] = useState()
+  
+  const getImageDimensions = (imageUrl)=>{
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({ width: img.width, height: img.height });
+      };
+      img.onerror = () => {
+        reject(new Error('Failed to load image'));
+      };
+      img.src = imageUrl;
+    });
+}
 
   useEffect(()=>{
-lightbox.init();
+    
+    
+    (async()=>{
+      const imgs= slides?.map(async(item)=>{
+       
+        const dimension =await getImageDimensions(item)
+        let width= dimension.width
+        let height= dimension.height
+        return await(
+          {
+            image:item,
+            width:width,
+            height:height
+          }
+          )
+        })
+        setImage(await Promise.all(imgs))
+           
+     } )();
+},[slides])
+
+  useEffect(()=>{
+    lightbox.init(
+    );
+    return () => {
+      lightbox.destroy();
+    }
   },[])
 
   return (
@@ -44,18 +84,18 @@ lightbox.init();
         className="mySwiper2"
         id='my-gallery'
       >
-      {slides?.map((item)=>(
+      {images?.map((item)=>(
         <SwiperSlide 
         >
         <a
-        data-pswp-src={item}
-        data-pswp-width="1200" 
-    data-pswp-height="600" 
-    data-pswp-objectFit="contain"
-    target="_blank"
+        data-pswp-src={item.image}
+        data-pswp-width={item.width}
+        data-pswp-height={item.height}
+        data-pswp-fit="contain" 
+        target="_blank"
         className='in-slide cursor-pointer'
         >
-          <img src={item} className="w-full min-h-[400px] max-h-[400px] !object-contain object-center rounded" />
+          <img src={item.image} className="w-full min-h-[400px] max-h-[400px] !object-contain object-center rounded" />
         </a>
         </SwiperSlide>
       ))}
@@ -71,9 +111,9 @@ lightbox.init();
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper1"
       >
-         {slides?.map((item)=>(
+         {images?.map((item)=>(
         <SwiperSlide>
-          <img src={item} className=" w-full min-h-[100px] max-h-[100px] object-fit object-center rounded"/>
+          <img src={item.image} className=" w-full min-h-[100px] max-h-[100px] object-fit object-center rounded"/>
         </SwiperSlide>
       ))}
       </Swiper>
