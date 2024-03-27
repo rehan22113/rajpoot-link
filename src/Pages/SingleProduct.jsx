@@ -12,9 +12,12 @@ const SingleProduct = () => {
   const {data,isFetching} = useGetSinglePostQuery(id)
   const [singlePost,setSinglePost] = useState([])
 
+
   useEffect(()=>{
     data?setSinglePost(data.data):console.log("fetching single post")
   },[isFetching])
+
+  
   
   return (
     <>

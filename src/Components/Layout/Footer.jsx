@@ -75,7 +75,7 @@ const Footer = () => {
             <h3 className=" uppercase text-white">Contact</h3>
             <span className="block mt-2 text-sm text-gray-400 hover:underline">(+92) 51 512 4820 - 21</span>
             <span className="block mt-2 text-sm text-gray-400 hover:underline"> info@rajpootlinks.com</span>
-            <span className="block mt-2 text-sm text-gray-400 hover:underline"> wa.me/+923455534476</span>
+            <span className="block mt-2 text-sm text-gray-400 hover:underline"> (+92) 345 5534476</span>
           </div>
         </div>
       </div>
