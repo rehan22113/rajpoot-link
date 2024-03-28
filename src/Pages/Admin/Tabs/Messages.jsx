@@ -30,9 +30,9 @@ const Messages = () => {
     <div>
       <div className="flex items-center gap-x-3">
         <h2 className="text-xl text-gray-800 font-bold">All Messages</h2>
-        {/* <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">240 vendors</span> */}
+       
       </div>
-      {/* <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">These companies have purchased in the last 12 months.</p> */}
+      
     </div>
     
   </div>
@@ -40,24 +40,24 @@ const Messages = () => {
    
     <div className="relative flex items-center mt-4 md:mt-0">
       <span className="absolute">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mx-3 text-gray-600">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
       </span>
-      <input type="text" placeholder="Search" className="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+      <input type="text" placeholder="Search" className="block w-full py-1.5 pr-5  border rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 bg-gray-900 text-gray-300 border-gray-600 focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
     </div>
   </div>
   <div className="flex flex-col mt-6 dark">
     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-        <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-800">
+        <div className="overflow-hidden border border-gray-700 md:rounded-lg">
+          <table className="min-w-full divide-y divide-gray-700">
+            <thead className="bg-gray-800">
               <tr>
-              <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-400">
                   Name
                 </th>
-                <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-400">
                   <button className="flex items-center gap-x-3 focus:outline-none">
                     <span>Email</span>
                     <svg className="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,7 +70,7 @@ const Messages = () => {
                 {/* <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   Parent
                 </th> */}
-                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-400">
                   Message
                 </th>
                 
@@ -79,7 +79,7 @@ const Messages = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+            <tbody className=" divide-y divide-gray-700 bg-gray-900">
             {contactData && contactData.map((item)=>(
               <tr key={item._id}>
               <td className="px-4 py-4 text-sm whitespace-nowrap text-white">
@@ -87,7 +87,7 @@ const Messages = () => {
                 </td>
                 <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                   <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">{item.email}</h2>
+                    <h2 className="font-medium text-white ">{item.email}</h2>
                     {/* <p className="text-sm font-normal text-gray-600 dark:text-gray-400">catalogapp.io</p> */}
                   </div>
                 </td>
@@ -103,7 +103,7 @@ const Messages = () => {
                 </td>
                 
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
-                  <button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
+                  <button className="px-1 py-1 transition-colors duration-200 rounded-lg text-gray-300 hover:bg-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
                     </svg>
@@ -119,11 +119,11 @@ const Messages = () => {
     </div>
   </div>
   <div className="mt-6 sm:flex sm:items-center sm:justify-between ">
-    <div className="text-sm text-gray-500 dark:text-gray-400">
+    <div className="text-sm text-gray-400">
       Page <span className="font-medium text-gray-700">1 of 10</span> 
     </div>
     <div className="flex items-center mt-4 gap-x-4 sm:mt-0">
-      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm  capitalize transition-colors duration-200  border rounded-md sm:w-auto gap-x-2 bg-gray-900 text-gray-200 border-gray-700 hover:bg-gray-800">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
           <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
         </svg>
@@ -131,7 +131,7 @@ const Messages = () => {
           previous
         </span>
       </a>
-      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+      <a href="#" className="flex items-center justify-center w-1/2 px-5 py-2 text-sm  capitalize transition-colors duration-200 border rounded-md sm:w-auto gap-x-2 bg-gray-900 text-gray-200 border-gray-700 hover:bg-gray-800">
         <span>
           Next
         </span>
@@ -179,18 +179,13 @@ const Messages = () => {
 <form>
   <div className="my-6">
     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name of Principal</label>
-    <input type="text" onChange={(e)=>{setCategory({...category,name:e.target.value})}} id="name" className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Women Cloths etc." required />
+    <input type="text" onChange={(e)=>{setCategory({...category,name:e.target.value})}} id="name" className=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" placeholder="Women Cloths etc." required />
   </div>
   <div className="mb-6">
     <label htmlFor="file" className="block mb-2 text-sm font-medium text-gray-900">Thumbnail Image</label>
-    <input onChange={(e)=>{setCategory({...category,file:e.target.files[0]})}} type="file" id="file" className="bg-gray-50 border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+    <input onChange={(e)=>{setCategory({...category,file:e.target.files[0]})}} type="file" id="file" className=" border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-100 focus:ring-blue-500 focus:border-blue-500" required />
   </div>
-  {/* <div className="flex items-start mb-6">
-    <div className="flex items-center h-5">
-      <input id="remember" type="checkbox" defaultValue className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-    </div>
-    <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Active</label>
-  </div> */}
+ 
 
                   <div className="mt-4">
                     <button
