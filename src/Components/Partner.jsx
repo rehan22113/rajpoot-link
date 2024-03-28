@@ -46,7 +46,7 @@ const Partner = ({principal}) => {
           <div key={item._id} className="flex items-center flex-col justify-center">
           <img src={`${item.image}`} className=' rounded-xl min-w-[190px] max-w-[200px] !h-40 !object-contain' />
           <h2 className='text-gray-200 py-2'>
-          <Link to={`/principal?id=${item._id}`}>
+          <Link to={`/principal?id=${item._id}&name=${item.name}`}>
           {item.name}
   </Link>
           

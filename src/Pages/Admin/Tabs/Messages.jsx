@@ -88,14 +88,10 @@ const Messages = () => {
                 <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                   <div>
                     <h2 className="font-medium text-white ">{item.email}</h2>
-                    {/* <p className="text-sm font-normal text-gray-600 dark:text-gray-400">catalogapp.io</p> */}
+                    
                   </div>
                 </td>
-                {/* <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                  <div className="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                    Customer
-                  </div>
-                </td> */}
+                
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                 <textarea disabled className="text-sm font-normal p-1 text-white">
                 {item.message}
