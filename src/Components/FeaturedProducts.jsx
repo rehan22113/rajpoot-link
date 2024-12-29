@@ -58,7 +58,7 @@ export default function FeaturedProducts({post}) {
         <SwiperSlide key={item._id}>
         <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
             <div className="flex items-end justify-end h-56 w-full bg-cover bg-center" style={{backgroundImage: `url('${item.fImage[0]}')`}}>
-            <button onClick={()=>Navigate(`/product/${item._id}`)} className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+            <button onClick={()=>Navigate(`/product/${item.url}`)} className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
             <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 text-white fill-current hover:scale-110' height="1em" viewBox="0 0 448 512">{/*! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. */}<path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" /></svg>
 
               </button>
@@ -69,7 +69,7 @@ export default function FeaturedProducts({post}) {
   {item.category.name}
   </h3>
   <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
-  <Link to={`/product/${item._id}`}>
+  <Link to={`/product/${item.url}`}>
   {item.title}
   </Link>
 
