@@ -176,7 +176,7 @@ const AllPost = () => {
               </Menu.Item>
               <Menu.Item>
               
-                  <Link target="_blank" to={`/product/${item._id}`}
+                  <Link target="_blank" to={`/product/${item.url}`}
                     className={` group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   > 
                     View
