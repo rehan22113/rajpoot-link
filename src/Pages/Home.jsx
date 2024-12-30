@@ -15,6 +15,7 @@ import { useGetClientByLimitQuery } from '../Redux/Api/ClientApi'
 import Clients from '../Components/Clients'
 import MainSlider from '../Components/HeroSlider'
 import MobileNavbar from '../Components/Layout/MobileNavbar'
+import Loading from '../Components/Loading'
 const Home = () => {
   const {data:CategoryByLimit,isFetching} = useGetCategoryByLimitQuery(20)
   const {data:category} = useGetCategoryQuery()
@@ -28,6 +29,7 @@ const Home = () => {
   const [principalLimited,setPrincipalLimited] = useState([])
   const [clientLimited,setClientLimited] = useState([])
   const [filterCategory,setFilterCategory] = useState({data:[]})
+  const [loading,setLoading] = useState(false)
 
   const FilterParentCategory=()=>{
     const filteredCategories = category?.data?.filter((item) =>item.parent ===null);
@@ -39,12 +41,20 @@ const Home = () => {
   },[category])
   
   useEffect(()=>{
+    setLoading(true)
     CategoryByLimit?setCategoryLimited(CategoryByLimit.data):console.log("Fetching Categoires")
     LimitedPost?setLimitedPost(LimitedPost.data):console.log("fetching limited post")
     PrincipalByLimit?setPrincipalLimited(PrincipalByLimit.data):console.log("Fetching Principal")
     // IndustryByLimit?setIndustryLimited(IndustryByLimit.data):console.log("Fetching Industry")
     ClientByLimit?setClientLimited(ClientByLimit.data):console.log("Fetching Client")
+    setLoading(false)
   },[isFetching,fetchPost,fetchPrincipal,fetchIndustry])
+
+
+  if(loading){
+    return <Loading/>
+    }
+
   return (
     <div>
     <Navbar/>
