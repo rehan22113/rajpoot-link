@@ -12,7 +12,7 @@ const Loading = () => {
   const { View } = useLottie(options);
   return <>
     
-        <div className='fixed h-[99vh] bg-black/20 w-[100%] overflow-hidden z-50 flex justify-center items-center'>
+        <div className='fixed h-[99vh] w-[100%] overflow-hidden z-50 flex justify-center items-center'>
         <div className="w-1/3 ">
           {View}
         </div> 
