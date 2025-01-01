@@ -29,7 +29,7 @@ const Industry = () => {
     <MobileNavbar/>
     <section aria-labelledby="products-heading" className="pt-6 px-10 pb-24">
     <div className="z-10 flex items-baseline justify-between pt-10 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> {posts[0]?`Explore ${industryName} products`:"No records Found"} </h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-skin-primary"> {posts[0]?`Explore ${industryName} products`:""} </h1>
             </div>
             <div className="">
              
