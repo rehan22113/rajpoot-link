@@ -45,7 +45,7 @@ const history = useNavigate()
 
               <Menu.Item key={item._id}>
                 {({ active }) => (
-               <Link onClick={()=>{HandleCatFilter(item.name)}} to={`/${name.toLowerCase()}?id=${item._id}&name=${item.name}`} className={`${active ? 'bg-[#155984] text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+               <Link onClick={()=>{HandleCatFilter(item.name)}} to={`/${name.toLowerCase()}?id=${item.url}&name=${item.name}`} className={`${active ? 'bg-[#155984] text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                    {item.name}
                   </Link>

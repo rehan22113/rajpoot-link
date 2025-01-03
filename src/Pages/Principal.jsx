@@ -50,7 +50,7 @@ const Principal = () => {
             <div className="px-6 max-w-xl">
               <h2 className="text-2xl text-white font-semibold">{item.name}</h2>
               {/* <p className="mt-2 text-gray-200">{posts?.length} Products</p> */}
-              <Link to={`/principal/category?pId=${id}&cId=${item._id}&pName=${principalName}&cName=${item.name}`} className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
+              <Link to={`/principal/category?pId=${id}&cId=${item.url}&pName=${principalName}&cName=${item.name}`} className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
                 <span>Explore Now</span>
                 <svg className="h-5 w-5 mx-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </Link>
