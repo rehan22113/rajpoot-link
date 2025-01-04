@@ -225,7 +225,7 @@ leaveTo="transform opacity-0 scale-95"
 {({ active }) => (
   <Link
   target='_blank'
-  to={`/industry?id=${item._id}`}
+  to={`/industry?id=${item.url}`}
     className={`${
       active ? 'bg-violet-500 text-white' : 'text-gray-900'
     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

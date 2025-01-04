@@ -74,7 +74,7 @@ leaveTo="transform opacity-0 scale-95"
   </button>
 </Menu.Item>
 <Menu.Item>
-  <Link to={`/category?id=${category._id}`}
+  <Link to={`/category?id=${category.url}`}
     className={` group flex w-full items-center rounded-md px-2 py-2 text-sm`}
   >
     
