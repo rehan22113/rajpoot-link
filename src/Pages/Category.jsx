@@ -6,9 +6,11 @@ import BoxProduct from '../Components/ShopProduct/BoxProduct'
 import { useGetPostByCategoryQuery } from '../Redux/Api/PostApi'
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom'
 import MobileNavbar from '../Components/Layout/MobileNavbar'
+import Loading from '../Components/Loading'
 
 const Category = () => {
   const location = useLocation();
+  const [loading,setLoading] = useState(true)
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
   const catName = searchParams.get('name');
@@ -19,18 +21,28 @@ const Category = () => {
 
   useEffect(()=>{
     
+    setLoading(true)
     // console.log(category?.data,posts)
-if(category){
-  category.msg=="post"?setPosts(category.data):category.msg=="category"?setCat(category.data):console.log("fetching filter category")
-}
+    if(category){
+      
+      category.msg=="post"?setPosts(category.data):category.msg=="category"?setCat(category.data):console.log("fetching filter category")
+    }
 
- },[isFetching,category,isLoading])
+ },[isFetching,category])
+
+
+    useEffect(()=>{
+      if(posts.length>0 || cat.length>0){
+       setLoading(false)
+      }
+    },[posts])
 
 
 
   return (
     
     <div className='bg-white'>
+    {loading && <Loading/>}
     <Navbar/>
     <MobileNavbar/>
     <section aria-labelledby="products-heading" className="pt-6 px-10 pb-24">
