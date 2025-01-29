@@ -30,10 +30,10 @@ const IndustryAndCategory = () => {
 
 
   useEffect(()=>{
-     if(posts.length>0){
+     if(posts.length>0 || cat.length>0){
       setLoading(false)
      }
-   },[posts])
+   },[posts,cat,category])
 
   return (
     

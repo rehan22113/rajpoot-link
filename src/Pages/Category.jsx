@@ -35,7 +35,7 @@ const Category = () => {
       if(posts.length>0 || cat.length>0){
        setLoading(false)
       }
-    },[posts])
+    },[posts,cat,category])
 
 
 
