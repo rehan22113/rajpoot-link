@@ -29,10 +29,11 @@ const PrincipalAndCategory = () => {
  },[isFetching,category])
 
  useEffect(()=>{
-     if(posts.length>0){
+    console.log(posts.length)
+     if(posts.length>0 || cat.length>0){
       setLoading(false)
      }
-   },[posts])
+   },[posts,cat,category])
 
   return (
     
