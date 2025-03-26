@@ -38,7 +38,7 @@ const SingleProduct = () => {
         {/* <p className="leading-relaxed">
         {singlePost?.content}
         </p> */}
-        <article className=' font-default' dangerouslySetInnerHTML={{__html:singlePost.content}}>
+        <article dangerouslySetInnerHTML={{__html:singlePost.content}}>
     </article>
         <div className="flex flex-col mt-6 items-start gap-5 pb-5 border-b-2 border-gray-100 mb-5">
         <p className="leading-relaxed text-md">
