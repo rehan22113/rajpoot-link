@@ -19,15 +19,9 @@ const Industry = () => {
 
   
   useEffect(()=>{
-    setLoading(true)
     category?setPosts(category.data):console.log("fetching filter industry")
+    setLoading(false)
   },[isFetching,category])
-
-  useEffect(()=>{
-    if(posts.length>0){
-     setLoading(false)
-    }
-  },[posts])
 
   return (
     <div className='bg-white'>

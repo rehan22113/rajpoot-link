@@ -20,15 +20,9 @@ const Principal = () => {
 
   useEffect(()=>{
     // console.log(category.data)
-    setLoading(true)
     category?setPosts(category.data):console.log("fetching filter Principal")
+    setLoading(false)
  },[isFetching,category])
-
-  useEffect(()=>{
-     if(posts.length>0){
-      setLoading(false)
-     }
-   },[posts])
 
   
   return (

@@ -25,16 +25,8 @@ const PrincipalAndCategory = () => {
     if(category){
       category.msg=="post"?setPosts(category.data):category.msg=="category"?setCat(category.data):console.log("fetching filter category")
     }
-
+    setLoading(false)
  },[isFetching,category])
-
- useEffect(()=>{
-    console.log(posts.length)
-     if(posts.length>0 || cat.length>0){
-      setLoading(false)
-     }
-   },[posts,cat,category])
-
   return (
     
     <div className='bg-white'>
